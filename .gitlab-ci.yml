@@ -20,6 +20,29 @@ build:
     - export NODE_OPTIONS=--openssl-legacy-provider
     - npm run build
 
+variables:
+  PROJECT_PATH: "$CI_PROJECT_DIR"
+  APP_OUTPUT_PATH: "$CI_PROJECT_DIR/artifacts/app"
+
+build_app:
+  stage: build
+  script:
+    - yarn ng build --prod
+  after_script:
+    - cp $PROJECT_PATH/Dockerfile $APP_OUTPUT_PATH
+  artifacts:
+    name: "angular-app-pipeline"
+    paths:
+      - $APP_OUTPUT_PATH
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull
+
+
 production:
   stage: copy
   script:
