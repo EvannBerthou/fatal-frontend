@@ -27,6 +27,7 @@ variables:
 build_app:
   stage: build
   script:
+    - export NODE_OPTIONS=--openssl-legacy-provider
     - yarn ng build --prod
   after_script:
     - cp $PROJECT_PATH/Dockerfile $APP_OUTPUT_PATH
