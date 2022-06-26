@@ -1,7 +1,7 @@
-#Projet Depta
+# Projet Depta
 Vous savez ce que c'est
 
-#Code understanding
+# Code understanding
 Le code du projet se trouve dans le dossier src.
 On a alors plusieurs dossiers et fichiers important:
 - Le dossier assets contenant toutes les ressources utiles
