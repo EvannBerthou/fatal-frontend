@@ -12,14 +12,17 @@ cache:
 install:
   stage: install
   script:
+    - PATH="$PATH:/shared/node/bin/"
     - npm install
 
 build:
   stage: build
   script:
-    - npm run build
+    - PATH="$PATH:/shared/node/bin/"
+    - /shared/node/bin/npm run build
 
 production:
   stage: copy
   script:
+    - PATH="$PATH:/shared/node/bin/"
     - ls -la
