@@ -26,4 +26,4 @@ production:
   stage: copy
   script:
     - PATH="$PATH:/shared/node/bin/"
-    - cp -r dist/* /var/www/html
+    - cp -r dist/*/* /var/www/html
