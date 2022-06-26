@@ -1,9 +1,10 @@
-stages:          # List of stages for jobs, and their order of execution
-  - build
-  
-image: node:4.2.2
+image: node:latest
 
-build-job:       # This job runs in the build stage, which runs first.
-  stage: build
+cache:
+  paths:
+    - node_modules/
+
+
+test_async:
   script:
     - npm install
