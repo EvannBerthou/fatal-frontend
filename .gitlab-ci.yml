@@ -29,6 +29,7 @@ build_app:
   script:
     - export NODE_OPTIONS=--openssl-legacy-provider
     - yarn ng build --prod
+    - ls -la
   after_script:
     - cp $PROJECT_PATH/Dockerfile $APP_OUTPUT_PATH
   artifacts:
