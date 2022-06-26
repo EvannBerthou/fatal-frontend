@@ -14,12 +14,6 @@ install:
   script:
     - npm install
 
-build:
-  stage: build
-  script:
-    - export NODE_OPTIONS=--openssl-legacy-provider
-    - npm run build
-
 variables:
   PROJECT_PATH: "$CI_PROJECT_DIR"
   APP_OUTPUT_PATH: "$CI_PROJECT_DIR/artifacts/app"
@@ -28,10 +22,10 @@ build_app:
   stage: build
   script:
     - export NODE_OPTIONS=--openssl-legacy-provider
-    - yarn ng build --prod
+    - yarn ng build
     - ls -la
   after_script:
-    - cp $PROJECT_PATH/Dockerfile $APP_OUTPUT_PATH
+    - cp $PROJECT_PATH/dist/* $APP_OUTPUT_PATH
   artifacts:
     name: "angular-app-pipeline"
     paths:
