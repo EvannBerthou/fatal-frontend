@@ -1,4 +1,4 @@
-job_1:
+build:
   stage: stage_a
   image: node:12-alpine
   tags:
