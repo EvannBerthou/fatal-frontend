@@ -25,7 +25,8 @@ build_app:
     - yarn ng build
     - ls -la
   after_script:
-    - cp $PROJECT_PATH/dist/* $APP_OUTPUT_PATH
+    - cp -r $PROJECT_PATH/frontendQCM/* $APP_OUTPUT_PATH
+    - ls -la $APP_OUTPUT_PATH
   artifacts:
     name: "angular-app-pipeline"
     paths:
