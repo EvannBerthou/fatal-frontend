@@ -14,31 +14,10 @@ install:
   script:
     - npm install
 
-variables:
-  PROJECT_PATH: "$CI_PROJECT_DIR"
-  APP_OUTPUT_PATH: "$CI_PROJECT_DIR/artifacts/app"
-
-build_app:
+build:
   stage: build
   script:
-    - export NODE_OPTIONS=--openssl-legacy-provider
-    - yarn ng build
-    - ls -la
-  after_script:
-    - cp -r $PROJECT_PATH/dist/frontendQCM/* $APP_OUTPUT_PATH
-    - ls -la $APP_OUTPUT_PATH
-  artifacts:
-    name: "angular-app-pipeline"
-    paths:
-      - $APP_OUTPUT_PATH
-  cache:
-    key:
-      files:
-        - yarn.lock
-    paths:
-      - node_modules
-    policy: pull
-
+    - npm run build
 
 production:
   stage: copy
