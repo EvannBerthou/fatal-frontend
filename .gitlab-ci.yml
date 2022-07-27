@@ -31,7 +31,8 @@ build:
     - /shared/node/bin/npm run build
     - tar -zcvf build.tgz dist 
     - /jfrogcli/jfrog config add $FATALFRONT_REPO_KEY --artifactory-url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS --interactive=false
-    - /jfrogcli/jfrog rt u build.tgz $FATALFRONT_REPO_KEY 
+    - /jfrogcli/jfrog config show
+    - /jfrogcli/jfrog rt u --url=$ARTIFACTORY_URL build.tgz $FATALFRONT_REPO_KEY 
 
 production:
   rules:
