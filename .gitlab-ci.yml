@@ -30,7 +30,7 @@ build:
     - PATH="$PATH:/shared/node/bin/"
     - /shared/node/bin/npm run build
     - tar -zcvf build.tgz dist 
-    - /jfrogcli/jfrog config clean
+    - /jfrogcli/jfrog config remove
     - /jfrogcli/jfrog config add $FATALFRONT_REPO_KEY --artifactory-url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS --interactive=false
     - /jfrogcli/jfrog config show
     - /jfrogcli/jfrog rt u --url=$ARTIFACTORY_URL build.tgz $FATALFRONT_REPO_KEY 
