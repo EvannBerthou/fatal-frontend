@@ -34,7 +34,7 @@ build:
     - /jfrogcli/jfrog config add $FATALFRONT_REPO_KEY --artifactory-url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS --interactive=false
     - /jfrogcli/jfrog config show
     - /jfrogcli/jfrog config use $FATALFRONT_REPO_KEY
-    - /jfrogcli/jfrog rt u --url=$ARTIFACTORY_URL/gitlabfatal/ --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS build.tgz $FATALFRONT_REPO_KEY 
+    - /jfrogcli/jfrog rt u --url=$ARTIFACTORY_URL/fatalfront-builds/ --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS build.tgz $FATALFRONT_REPO_KEY 
 
 production:
   rules:
