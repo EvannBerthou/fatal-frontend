@@ -29,6 +29,9 @@ build:
   script:
     - PATH="$PATH:/shared/node/bin/"
     - /shared/node/bin/npm run build
+    - tar -zcvf build.tgz dist 
+    - /jfrogcli/jfrog config add $FATALFRONT_REPO_KEY --artifactory-url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS --interactive=false
+    - rt u --build-name="Test Project" --build-number="${CI_BUILD_TAG}" build.tgz $FATALFRONT_REPO_KEY
 
 production:
   rules:
