@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthenticationService} from "../../Services/authentication.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthenticationService } from "../../Services/authentication.service";
 
 @Component({
   selector: 'app-connexion',
@@ -9,7 +9,7 @@ import {AuthenticationService} from "../../Services/authentication.service";
 })
 export class ConnexionComponent implements OnInit {
   username: string | undefined;
-  password : string | undefined;
+  password: string | undefined;
   errorMessage = 'Invalid Credentials';
   successMessage: string | undefined;
   invalidLogin = false;
@@ -19,14 +19,14 @@ export class ConnexionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService) {   }
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   connexion() {
     if (this.username != null && this.password != null) {
-      this.authenticationService.authenticationService(this.username, this.password).subscribe(r => {
+      this.authenticationService.authenticationService(this.username, this.password).subscribe((r: any) => {
         this.invalidLogin = false;
         this.loginSuccess = true;
         this.successMessage = 'Login Successful.';

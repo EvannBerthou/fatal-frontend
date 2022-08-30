@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {map} from "rxjs/operators";
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { map, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class AuthenticationService {
   public username: any;
   public password: string | undefined;
   public id: any;
-  public prenom : any;
-  public nom : any;
+  public prenom: any;
+  public nom: any;
   private email: any;
   private isAdmin: any;
 
@@ -28,12 +28,30 @@ export class AuthenticationService {
   }
 
 
-  authenticationService(username: string, password: string) {
+  authenticationService(username: string, password: string): any {
+    return this.http.post<any>('http://localhost:3000/auth/sign_in', { email: username, password }, { observe: 'response' })
+      .pipe(
+        tap(() => {
+          this.registerSuccessfulLogin(1, "", "", "", "", true)
+          sessionStorage.setItem("ID", "1");
+        })
+      )
+    /*
+      .pipe(
+        map((response: any) => {
+          console.log(response.headers.get('Authorization'))
+          console.log(response)
+          console.log(response.headers.keys())
+          console.log(response.body.data)
+          this.registerSuccessfulLogin(0, "", "", "", "", true);
+        })
+      )
+*/
     const body = new HttpParams()
       .set('username', username)
       .set('password', password);
 
-    const options =  {
+    const options = {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
     }
@@ -46,18 +64,17 @@ export class AuthenticationService {
         this.nom = res.nom
         this.email = res.email
         this.isAdmin = res.isAdmin
-        this.registerSuccessfulLogin(this.id,this.username,this.prenom,this.nom,this.email,this.isAdmin);
-    }));
+        this.registerSuccessfulLogin(this.id, this.username, this.prenom, this.nom, this.email, this.isAdmin);
+      }));
   }
 
-  registerSuccessfulLogin(id:number,username: string, prenom: string, nom: string, email: string, isAdmin: boolean) {
+  registerSuccessfulLogin(id: number, username: string, prenom: string, nom: string, email: string, isAdmin: boolean) {
     sessionStorage.setItem("USERNAME", username)
     sessionStorage.setItem("PRENOM", prenom)
     sessionStorage.setItem("NOM", nom)
     sessionStorage.setItem("EMAIL", email)
     sessionStorage.setItem("ISADMIN", String(isAdmin))
     sessionStorage.setItem("ID", this.id)
-
   }
 
   logout() {
@@ -89,16 +106,16 @@ export class AuthenticationService {
     return user
   }
 
-  getName(){
+  getName() {
     let prenom = sessionStorage.getItem("PRENOM")
     let nom = sessionStorage.getItem("NOM")
 
-    if(prenom == null || nom == null) return ""
+    if (prenom == null || nom == null) return ""
 
     return nom.toUpperCase() + " " + prenom
   }
 
-  getId(){
+  getId() {
     return sessionStorage.getItem("ID")
   }
 
