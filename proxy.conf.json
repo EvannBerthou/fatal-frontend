@@ -1,8 +1,11 @@
 {
-  "**": {
-    "target": "http://back.depta.krapo.pro",
+  "/api/**": {
+    "target": "http://back.fatal.krapo.pro",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
   }
 }
