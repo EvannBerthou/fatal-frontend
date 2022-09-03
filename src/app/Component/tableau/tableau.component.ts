@@ -1,13 +1,14 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {QCM} from "../../Modeles/QCM";
-import {QcmService} from "../../Services/qcm.service";
-import {InputDialogComponent} from "../Accueil/input-dialog/input-dialog.component";
-import {QuestionService} from "../../Services/question.service";
-import {Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {CreationQuestionsComponent} from "../Creation/creation-questions/creation-questions.component";
-import {AuthenticationService} from "../../Services/authentication.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { QCM } from "../../Modeles/QCM";
+import { QcmService } from "../../Services/qcm.service";
+import { InputDialogComponent } from "../Accueil/input-dialog/input-dialog.component";
+import { QuestionService } from "../../Services/question.service";
+import { Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { AuthenticationService } from "../../Services/authentication.service";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tableau',
@@ -15,32 +16,25 @@ import {AuthenticationService} from "../../Services/authentication.service";
   styleUrls: ['./tableau.component.scss']
 })
 export class TableauComponent implements OnInit {
-  id = sessionStorage.getItem("ID");
-  qcms: QCM[] = [];
-  qcm = <QCM>{};
-  dataSource!: MatTableDataSource<QCM>;
-  constructor(public dialog: MatDialog,private service: QcmService, private questionService: QuestionService, private router: Router, private authentService: AuthenticationService) {
+  private dataSource = new MatTableDataSource<QCM>();
 
+  qcms$: Observable<MatTableDataSource<QCM>> = this.service.getQCMFromUser().pipe(
+    map((qcms: QCM[]) => {
+      this.dataSource.data = qcms;
+      return this.dataSource;
+    })
+  );
+
+  constructor(public dialog: MatDialog, private service: QcmService, private questionService: QuestionService, private router: Router, private authentService: AuthenticationService) {
   }
-  displayedColumns: string[] = ['name', 'modify', 'mark','correction'];
+
+  displayedColumns: string[] = ['name', 'modify', 'mark', 'correction'];
 
   ngOnInit(): void {
-    this.qcm.titre = "QCM1";
-    this.qcm.id = 1;
-    this.qcms.push(this.qcm);
-
-
-    if(this.id != null){
-      this.service.getQCMFromUser(this.id).subscribe(r => {
-        this.qcms = r;
-        this.qcms.forEach(each => {
-          this.dataSource = new MatTableDataSource<QCM>(this.qcms)
-        })
-      })
-    }
   }
+
   applyFilter(event: Event) {
-    this.dataSource.filterPredicate = function(data, filter: string): boolean {
+    this.dataSource.filterPredicate = function (data, filter: string): boolean {
       return data.titre.toLowerCase().includes(filter);
     };
     const filterValue = (event.target as HTMLInputElement).value;
@@ -49,33 +43,31 @@ export class TableauComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(InputDialogComponent, {
       width: '35%',
-      height:'17%',
+      height: '17%',
       panelClass: 'custom-dialog-container',
-      data: {button: 'Créer', placeholder: 'MON QCM', name:''},
+      data: { button: 'Créer', placeholder: 'MON QCM', name: '' },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result)
+      if (result)
         localStorage.removeItem("selector");
       localStorage.removeItem('QCM');
       this.questionService.reloadQCM(QCM.createEmptyQCM(this.authentService.getId()!.toString()));
-      this.router.navigate(['/creation',result])
+      this.router.navigate(['/creation', result])
     });
 
   }
 
-  onCorrection(qcm: QCM)
-  {
+  onCorrection(qcm: QCM) {
     this.router.navigate([`/correction/${qcm.id}`]);
   }
 
-  modifierQcm(qcm:QCM) {
+  modifierQcm(qcm: QCM) {
     console.log(qcm);
-    this.router.navigate([`/creation/${qcm.titre}/questions`],{state : {qcm:qcm}});
+    this.router.navigate([`/creation/${qcm.titre}/questions`], { state: { qcm: qcm } });
     this.questionService.reloadQCM(qcm);
   }
-  onNotes(qcm : QCM)
-  {
+  onNotes(qcm: QCM) {
     this.router.navigate([`/notes/${qcm.id}`]);
   }
 
