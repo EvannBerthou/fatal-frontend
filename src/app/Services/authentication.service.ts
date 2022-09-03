@@ -21,12 +21,14 @@ export class AuthenticationService {
         tap((response: any) => {
           this.user = response.body.data;
           sessionStorage.setItem('user', JSON.stringify(this.user))
+          sessionStorage.setItem('token', response.headers.get('Authorization'));
         })
       )
   }
 
   logout(): void {
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
   }
 
   isUserLoggedIn(): boolean {
