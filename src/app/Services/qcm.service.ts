@@ -24,16 +24,16 @@ export class QcmService {
   }
 
   getQCMFromUser() {
-    return this.http.get<QCM[]>(`/qcms`).pipe(map((res) => {
-      return res
-    }))
+    return this.http.get<QCM[]>(`/qcms`)
   }
 
-  generateNewQCM(QCM: QCM, classe: any, groupe: any): Observable<QCM> {
-    if (groupe == null) {
+  generateNewQCM(QCM: QCM, classe: any, groupe: any):any{
+/*    if (groupe == null) {
       return this.http.post<QCM>(`/qcm/${QCM.id}/generate/${classe}`, '', this.httpOptions);
-    }
-    return this.http.post<QCM>(`/qcm/${QCM.id}/generate/${classe}/${groupe}`, '', this.httpOptions);
+    }*/
+//    return this.http.post<QCM>(`/qcm/${QCM.id}/generate/${classe}/${groupe}`, '', this.httpOptions);
+
+      return this.http.get(`/qcms/${QCM.id}/generate`)
   }
 
   getQCMFromId(id: number): Observable<QCM> {

@@ -71,7 +71,7 @@ export class CreationEditionsComponent implements OnInit {
     let requ;
     if(!this.questionService.isNotSaved.value){
       if (this.qcm != undefined) {
-        if (this.selectedClasse != undefined) {
+        /*if (this.selectedClasse != undefined) {
           if (this.selectedGroupe != undefined) {
             requ = this.qcmService.generateNewQCM(this.qcm, this.selectedClasse.id, this.selectedGroupe.id);
           }
@@ -99,8 +99,10 @@ export class CreationEditionsComponent implements OnInit {
           this.errormessage = "Merci de sélectionner une classe et éventuellement un groupe avant de générer un QCM";
           this.isGenerate = false;
           this.pdf = null;
-        }
-        this.isGenerate = false;
+        }*/
+        requ = this.qcmService.generateNewQCM(this.qcm, undefined, null);
+        requ.subscribe()
+        this.isGenerate = true;
       }
     }
   }
