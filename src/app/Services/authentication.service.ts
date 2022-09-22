@@ -16,7 +16,7 @@ export class AuthenticationService {
 
 
   authenticationService(username: string, password: string): any {
-    return this.http.post<any>('/api/auth/sign_in', { email: username, password }, { observe: 'response' })
+    return this.http.post<any>('http://back.fatal.krapo.pro/auth/sign_in', { email: username, password }, { observe: 'response' })
       .pipe(
         tap((response: any) => {
           this.user = response.body.data;
