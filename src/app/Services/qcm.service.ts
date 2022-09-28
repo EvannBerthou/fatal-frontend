@@ -9,7 +9,6 @@ import { NotificationService } from "./notification.service";
   providedIn: 'root'
 })
 export class QcmService {
-  private backUrl = 'http://back.depta.krapo.pro/preferences';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -25,7 +24,7 @@ export class QcmService {
 
   //TODO (pas sûr): Ne récup que les infos du QCM sans les catégories etc, pour avoir un objet plus léger
   getQCMFromUser() {
-    return this.errorable(this.http.get<QCM[]>('http://back.fatal.krapo.pro/qcms'), 'Erreur lors de la reception des QCMs');
+    return this.errorable(this.http.get<QCM[]>('/qcms'), 'Erreur lors de la reception des QCMs');
   }
 
   generateNewQCM(QCM: QCM, classe: any, groupe: any): any {
@@ -33,19 +32,10 @@ export class QcmService {
   }
 
   getQCMFromId(id: number): Observable<QCM> {
-    return this.errorable(this.http.get<QCM>(`http://back.fatal.krapo.pro/qcms/${id}`, this.httpOptions), 'Ne parviens pas à récupérer le QCM');
+    return this.errorable(this.http.get<QCM>(`/qcms/${id}`, this.httpOptions), 'Ne parviens pas à récupérer le QCM');
   }
 
   modifyQCM(QCM: QCM): Observable<QCM> {
-    /*
-    QCM.categories.forEach(categorie => {
-      categorie.questions.forEach(question => {
-        question.reponses.forEach(reponse => {
-          delete reponse.id
-        })
-      })
-    })
-    */
     return this.errorable(this.http.put<QCM>(`/qcm`, QCM, this.httpOptions), 'Ne parviens pas à modifier le QCM');
   }
 
@@ -61,11 +51,9 @@ export class QcmService {
       "La suppression du QCM n'a pas aboutie"
     );
   }
-  // @ts-ignore
-  //generateApplication(): Observable<any>
 
   getPDFFromIdAndId(idcreateur: string | undefined, id: number | undefined) {
-    return fetch(`http://back.depta.krapo.pro/pdf/${idcreateur}/${id}`)
+    return fetch(`/pdf/${idcreateur}/${id}`)
       .then(r =>
         r.blob()
       ).then(r => {
