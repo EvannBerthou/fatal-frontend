@@ -24,7 +24,7 @@ export class QcmService {
   }
 
   getQCMFromUser() {
-    return this.http.get<QCM[]>(`/qcms`)
+    return this.http.get<QCM[]>(`http://back.fatal.krapo.pro/qcms`)
   }
 
   generateNewQCM(QCM: QCM, classe: any, groupe: any):any{
