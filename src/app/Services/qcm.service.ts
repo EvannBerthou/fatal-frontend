@@ -33,7 +33,7 @@ export class QcmService {
   }
 
   getQCMFromId(id: number): Observable<QCM> {
-    return this.errorable(this.http.get<QCM>(`/qcm/${id}`, this.httpOptions), 'Ne parviens pas à récupérer le QCM');
+    return this.errorable(this.http.get<QCM>(`http://back.fatal.krapo.pro/qcms/${id}`, this.httpOptions), 'Ne parviens pas à récupérer le QCM');
   }
 
   modifyQCM(QCM: QCM): Observable<QCM> {

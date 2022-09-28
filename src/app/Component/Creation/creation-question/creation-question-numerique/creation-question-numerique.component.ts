@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {QuestionService} from "../../../../Services/question.service";
-import {Categorie} from "../../../../Modeles/CATEGORIE";
-import {Question} from "../../../../Modeles/QUESTION";
+import { QuestionService } from "../../../../Services/question.service";
+import { Categorie } from "../../../../Modeles/CATEGORIE";
+import { Question } from "../../../../Modeles/QUESTION";
 import { QCM } from 'src/app/Modeles/QCM';
-import {Reponse} from "../../../../Modeles/REPONSE";
-import {Option} from "../../../../Modeles/OPTION";
+import { Reponse } from "../../../../Modeles/REPONSE";
+import { Option } from "../../../../Modeles/OPTION";
 
 @Component({
   selector: 'app-creation-question-numerique',
@@ -24,29 +24,29 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
   ngOnInit(): void {
     this.questionService.QCMActuel.subscribe(value => {
       this.QCM = value;
-      this.questionService.categorieActuel.subscribe(val =>{
+      this.questionService.categorieActuel.subscribe(val => {
         this.categorie = val;
-        this.questionService.questionActuel.subscribe(valu=>{
+        this.questionService.questionActuel.subscribe(valu => {
           this.question = valu;
-          this.QCM.categories.forEach(x=>{
-            if(x.nom === this.categorie.nom){
-              x.questions.forEach(y=>{
-                if(y.intitule === this.question.intitule){
+          this.QCM.categories.forEach(x => {
+            if (x.nom === this.categorie.nom) {
+              x.questions.forEach((y: any) => {
+                if (y.intitule === this.question.intitule) {
                   this.question = y;
-                  if(this.question.reponses.length>0){
+                  if (this.question.reponses.length > 0) {
                     this.reponseNum = this.question.reponses[0].texte;
                   }
-                  else{
+                  else {
                     this.reponseNum = '';
                   }
-                  this.question.options.optionsset.forEach(val=>{
+                  this.question.options.optionsset.forEach(val => {
 
-                    if(val.typeOption==="BONNEREPONSE"){
-                      this.optionsSet=val;
-                      this.notationNum=val.valeur;
+                    if (val.typeOption === "BONNEREPONSE") {
+                      this.optionsSet = val;
+                      this.notationNum = val.valeur;
                     }
                   });
-                  if(!this.notationNum){
+                  if (!this.notationNum) {
                     this.notationNum = '';
                   }
                 }
@@ -61,18 +61,18 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
 
 
   modifyReponse(value: string) {
-    if(this.isNumber(value)){
-      if(this.question.reponses.length>0){
+    if (this.isNumber(value)) {
+      if (this.question.reponses.length > 0) {
         this.question.reponses[0].texte = value;
-        this.question.reponses = [new Reponse(value,true)];
+        this.question.reponses = [new Reponse(value, true)];
       }
-      else{
-        this.question.reponses = [new Reponse(value,true)];
+      else {
+        this.question.reponses = [new Reponse(value, true)];
       }
       this.reponseNum = this.question.reponses[0].texte;
       this.questionService.reloadQCM(this.QCM);
     }
-    else{
+    else {
       // @ts-ignore
       document.getElementById("reponse").value = this.reponseNum;
     }
@@ -90,8 +90,8 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
   }
 
   modifyNotation(value: string) {
-    if(this.isNumber(value)){
-      for(let i = 0; i<this.question.options.optionsset.length;i++) {
+    if (this.isNumber(value)) {
+      for (let i = 0; i < this.question.options.optionsset.length; i++) {
         if (this.question.options.optionsset[i].typeOption === "BONNEREPONSE") {
           this.question.options.optionsset[i].valeur = value;
           this.notationNum = this.question.options.optionsset[i].valeur;
@@ -99,16 +99,16 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
           return;
         }
       }
-      this.question.options.optionsset.push(new Option("BONNEREPONSE",value));
+      this.question.options.optionsset.push(new Option("BONNEREPONSE", value));
     }
-    else{
+    else {
       // @ts-ignore
       document.getElementById("nota").value = this.notationNum;
     }
   }
 
   deleteReponse() {
-    if(this.reponseNum.length===1){
+    if (this.reponseNum.length === 1) {
       // @ts-ignore
       this.question.reponses[0].contain = '';
       this.reponseNum = '';
@@ -117,7 +117,7 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
   }
 
   deleteNotation() {
-    if(this.notationNum.length===1){
+    if (this.notationNum.length === 1) {
       // @ts-ignore
       this.question.options[0].valeur = '';
       this.notationNum = '';

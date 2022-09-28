@@ -4,27 +4,29 @@
   </div>
   <div class="div2">
     <mat-form-field appearance="outline" id="question">
-          <mat-label>Question?</mat-label>
-          <input #questionSt matInput (keyup)="modifyQuestion(questionSt.value)" placeholder="ma question?" value="{{question.intitule}}">
+      <mat-label>Question?</mat-label>
+      <input matInput placeholder="ma question?" value="{{selectedQuestion.texte}}">
     </mat-form-field>
   </div>
   <div class="div3">
     <mat-form-field appearance="outline" id="type">
-          <mat-label>Type</mat-label>
-          <mat-select  #t [(value)]="selected" (selectionChange)="typeChange()">
-            <mat-option *ngFor="let choi of choix" [value]="choi.value" (click)="setType()">
-              {{choi.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select [(value)]="selectedQuestion.typedequestion">
+        <mat-option *ngFor="let selectedChoix of choix" [value]="selectedChoix.value">
+          {{selectedChoix.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="not">
     <mat-card-title>Notation</mat-card-title>
     <mat-divider></mat-divider>
   </div>
   <div class="div4">
-    <app-creation-question-defaut (reponseChange)="setType()" *ngIf="selected=='defaut'"></app-creation-question-defaut>
-    <app-creation-question-numerique *ngIf="selected=='numerique'"></app-creation-question-numerique>
-    <app-creation-question-ouverte *ngIf="selected=='ouverte'"></app-creation-question-ouverte>
+    <app-creation-question-defaut *ngIf="selectedQuestion.typedequestion ==='multiple'"></app-creation-question-defaut>
+    <app-creation-question-numerique *ngIf="selectedQuestion.typedequestion ==='numerique'">
+    </app-creation-question-numerique>
+    <app-creation-question-ouverte *ngIf="selectedQuestion.typedequestion === 'ouverte'">
+    </app-creation-question-ouverte>
   </div>
 </mat-card>

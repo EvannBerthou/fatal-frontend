@@ -1,20 +1,22 @@
-<div *ngIf="categoriesLength() == 0" class="main-div">
-    <mat-card (click)="addCategorie()">
-        <mat-card-header>
-          <mat-card-title>{{titre}}</mat-card-title>
-        </mat-card-header>
-        <img src="{{image}}" alt="image" draggable="false">
-      </mat-card>
+<div *ngIf="qcm?.categories?.length == 0" class="main-div">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>AJOUTER UNE CATEGORIE</mat-card-title>
+    </mat-card-header>
+    <img src="assets/img/1.svg" alt="image" draggable="false">
+  </mat-card>
 </div>
 
-<div *ngIf="categoriesLength() > 0" class="wrapper">
+<div *ngIf="qcm?.categories?.length" class="wrapper">
   <div class="categories">
-    <app-creation-card *ngFor="let categorie of categories" [title]="categorie.nom" [type]="categorieType" class="categorie" (click)="setCategorie(categorie)"></app-creation-card>
-    <app-creation-add class="categorie" (click)="addCategorie()"></app-creation-add>
+    <app-creation-card *ngFor="let categorie of qcm.categories" [title]="categorie.texte" [type]="categorieType"
+      class="categorie" (click)="selectCategorie(categorie)"></app-creation-card>
+    <app-creation-add class="categorie"></app-creation-add>
   </div>
-  <div *ngIf="questions.length > 0" class="categories">
-    <app-creation-card *ngFor="let question of questions; let i = index" [title]="'Question '+(i+1).toString()" [type]="questionType" class="categorie" (click)="setQuestion(question)"></app-creation-card>
-    <app-creation-add class="categorie" (click)="addQuestion()"></app-creation-add>
+  <div class="categories">
+    <app-creation-card *ngFor="let question of selectedCategorie?.questions" [title]='question.texte'
+      [type]="questionType" class="categorie" (click)="selectQuestion(question)"></app-creation-card>
+    <app-creation-add class="categorie"></app-creation-add>
   </div>
-  <app-creation-question></app-creation-question>
+  <app-creation-question *ngIf="selectedQuestion" [selectedQuestion]="selectedQuestion"></app-creation-question>
 </div>

@@ -1,58 +1,56 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {QcmService} from "../../Services/qcm.service";
-import {QuestionService} from "../../Services/question.service";
-import {QCM} from "../../Modeles/QCM";
-import {Options} from "../../Modeles/OPTIONS";
-import {Option} from "../../Modeles/OPTION";
-import {NotificationService} from "../../Services/notification.service";
-import {DialogDeleteComponent} from "../../Component/dialog-delete/dialog-delete.component";
-import {MatDialog} from "@angular/material/dialog";
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { QcmService } from "../../Services/qcm.service";
+import { QuestionService } from "../../Services/question.service";
+import { QCM } from "../../Modeles/QCM";
+import { Options } from "../../Modeles/OPTIONS";
+import { Option } from "../../Modeles/OPTION";
+import { NotificationService } from "../../Services/notification.service";
+import { DialogDeleteComponent } from "../../Component/dialog-delete/dialog-delete.component";
+import { MatDialog } from "@angular/material/dialog";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-creation-qcm',
   templateUrl: './creation-qcm.component.html',
   styleUrls: ['./creation-qcm.component.scss']
 })
-export class CreationQCMComponent implements OnInit,AfterViewInit {
-  name : string = "bam";
-  isNotSaved: boolean = true;
-  qcmLocal: QCM|undefined;
-  qcmBd: QCM|undefined;
-  constructor(private dialog:MatDialog, public route:ActivatedRoute, private notificationService: NotificationService, private questionService: QuestionService, private qcmService: QcmService, public router:Router) { }
+export class CreationQCMComponent {
+  qcm$: Observable<QCM>;
 
-  ngOnInit(): void {
-    this.name = <string>this.route.snapshot.paramMap.get('name');
-    this.questionService.QCMActuel.subscribe(res =>{
-      this.qcmLocal = res;
-      this.questionService.isNotSaved.subscribe(res => {
-        this.isNotSaved = res
-      });
-    });
+  constructor(private dialog: MatDialog,
+    public route: ActivatedRoute,
+    private notificationService: NotificationService,
+    private questionService: QuestionService,
+    private qcmService: QcmService,
+    public router: Router) {
 
+    const id = this.route.snapshot.params['id'];
+    this.qcm$ = this.qcmService.getQCMFromId(id)
   }
 
+  /*
   checkSave() {
-    if(this.isNotSaved){
-      if(this.qcmLocal?.id){
-        this.qcmLocal.categories.forEach(categorie=>{
-          categorie.questions.forEach(question =>{
-            if(!question.options)
-              question.options = new Options(question.typeDeQuestion,[]);
+    if (this.isNotSaved) {
+      if (this.qcmLocal?.id) {
+        this.qcmLocal.categories.forEach(categorie => {
+          categorie.questions.forEach(question => {
+            if (!question.options)
+              question.options = new Options(question.typeDeQuestion, []);
           })
         })
 
-        this.qcmService.modifyQCM(this.qcmLocal).subscribe(res=>{
-          this.notificationService.successMessage(this.qcmLocal?.titre+" SAUVEGARDÉ AVEC SUCCÈS");
+        this.qcmService.modifyQCM(this.qcmLocal).subscribe(res => {
+          this.notificationService.successMessage(this.qcmLocal?.titre + " SAUVEGARDÉ AVEC SUCCÈS");
         });
         this.questionService.isNotSaved.next(false);
       }
-      else{
-        if(this.qcmLocal)
+      else {
+        if (this.qcmLocal)
           this.qcmLocal.titre = this.name;
         this.qcmService.createNewQCM(this.qcmLocal!).subscribe(res => {
-          this.notificationService.successMessage(this.qcmLocal?.titre+" CRÉÉ AVEC SUCCÈS")
-          this.qcmService.getQCMFromId(res).subscribe(r=>{
+          this.notificationService.successMessage(this.qcmLocal?.titre + " CRÉÉ AVEC SUCCÈS")
+          this.qcmService.getQCMFromId(res).subscribe(r => {
             this.questionService.reloadQCM(r);
             this.qcmLocal = r;
           })
@@ -78,12 +76,13 @@ export class CreationQCMComponent implements OnInit,AfterViewInit {
         }
         this.router.navigate(["/"]);
       }
-        });
+    });
   }
 
   ngAfterViewInit(): void {
-    if(this.qcmLocal?.id){
+    if (this.qcmLocal?.id) {
       this.questionService.isNotSaved.next(false);
     }
   }
+  */
 }

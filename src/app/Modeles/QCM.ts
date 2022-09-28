@@ -1,4 +1,4 @@
-import {Categorie, ICategorie} from "./CATEGORIE";
+import { Categorie, ICategorie } from "./CATEGORIE";
 import { Question } from "./QUESTION";
 
 export interface IQCM {
@@ -6,18 +6,19 @@ export interface IQCM {
   titre: string;
   entete: string;
   isRandomized: boolean
-  categories: ICategorie[];
+  //TODO: Ajouter les modèles
+  categories: any[];
   idcreateur: string;
 }
 
 export class QCM implements IQCM {
-  categories: ICategorie[];
+  categories: any[];
   entete: string;
   id: number | undefined;
   isRandomized: boolean;
   titre: string;
   idcreateur: string;
-  constructor(categories: ICategorie[], entete: string, isRandomized: boolean, titre:string, idcreateur:string, id?:number){
+  constructor(categories: ICategorie[], entete: string, isRandomized: boolean, titre: string, idcreateur: string, id?: number) {
     this.categories = categories;
     this.entete = entete;
     this.isRandomized = isRandomized;
@@ -26,8 +27,7 @@ export class QCM implements IQCM {
     this.id = id;
   }
 
-  static createEmptyQCM(idCreateur : string) : QCM
-  {
-    return new QCM([],'',false,"null",idCreateur,);
+  static createEmptyQCM(idCreateur: string): QCM {
+    return new QCM([], '', false, "null", idCreateur,);
   }
 }

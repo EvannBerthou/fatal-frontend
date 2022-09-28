@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Reponse} from "../../../../Modeles/REPONSE";
-import {Categorie} from "../../../../Modeles/CATEGORIE";
-import {Question} from "../../../../Modeles/QUESTION";
-import {QCM} from "../../../../Modeles/QCM";
-import {QuestionService} from "../../../../Services/question.service";
-import {Option} from "../../../../Modeles/OPTION";
-import {Options} from "../../../../Modeles/OPTIONS";
+import { Reponse } from "../../../../Modeles/REPONSE";
+import { Categorie } from "../../../../Modeles/CATEGORIE";
+import { Question } from "../../../../Modeles/QUESTION";
+import { QCM } from "../../../../Modeles/QCM";
+import { QuestionService } from "../../../../Services/question.service";
+import { Option } from "../../../../Modeles/OPTION";
+import { Options } from "../../../../Modeles/OPTIONS";
 
 @Component({
   selector: 'app-creation-question-ouverte',
@@ -25,21 +25,21 @@ export class CreationQuestionOuverteComponent implements OnInit {
   ngOnInit(): void {
     this.questionService.QCMActuel.subscribe(value => {
       this.QCM = value;
-      this.questionService.categorieActuel.subscribe(val =>{
+      this.questionService.categorieActuel.subscribe(val => {
         this.categorie = val;
-        this.questionService.questionActuel.subscribe(valu=>{
+        this.questionService.questionActuel.subscribe(valu => {
           this.question = valu;
-          this.QCM.categories.forEach(x=>{
-            if(x.nom === this.categorie.nom){
-              x.questions.forEach(y=>{
-                if(y.intitule === this.question.intitule){
+          this.QCM.categories.forEach(x => {
+            if (x.nom === this.categorie.nom) {
+              x.questions.forEach((y: any) => {
+                if (y.intitule === this.question.intitule) {
                   this.question = y;
-                  if(this.question.options && this.question.options.optionsset.length>0){
+                  if (this.question.options && this.question.options.optionsset.length > 0) {
                     this.notationNumAB = this.question.options.optionsset[0].valeur;
                     this.notationNumTB = this.question.options.optionsset[1].valeur;
                     this.notationNumF = this.question.options.optionsset[2].valeur;
                   }
-                  else{
+                  else {
                     this.notationNumAB = '';
                     this.notationNumTB = '';
                     this.notationNumF = '';
@@ -66,21 +66,21 @@ export class CreationQuestionOuverteComponent implements OnInit {
   }
 
   modifyNotationF(value: string) {
-    if(this.isNumber(value)){
-      if(this.question.options && this.question.options.optionsset.length>0){
+    if (this.isNumber(value)) {
+      if (this.question.options && this.question.options.optionsset.length > 0) {
         this.question.options.optionsset[2].valeur = value;
       }
-      else{
-        this.question.options = new Options('OUVERTE',[])  ;
-        this.question.options.optionsset.push(new Option("BAREMEAB",''))
-        this.question.options.optionsset.push(new Option("BAREMETB",''))
-        this.question.options.optionsset.push(new Option("BAREMEF",value))
+      else {
+        this.question.options = new Options('OUVERTE', []);
+        this.question.options.optionsset.push(new Option("BAREMEAB", ''))
+        this.question.options.optionsset.push(new Option("BAREMETB", ''))
+        this.question.options.optionsset.push(new Option("BAREMEF", value))
       }
       // @ts-ignore
       this.notationNumF = this.question.options.optionsset[2].valeur;
       this.questionService.reloadQCM(this.QCM);
     }
-    else{
+    else {
       // @ts-ignore
       document.getElementById("notaF").value = this.notationNumF;
     }
@@ -88,43 +88,43 @@ export class CreationQuestionOuverteComponent implements OnInit {
   }
 
   modifyNotationAB(value: string) {
-    if(this.isNumber(value)){
-      if(this.question.options && this.question.options.optionsset.length>0){
+    if (this.isNumber(value)) {
+      if (this.question.options && this.question.options.optionsset.length > 0) {
         this.question.options.optionsset[0].valeur = value;
       }
-      else{
-        this.question.options.optionsset = [new Option("BAREMEAB",value),new Option("BAREMETB",''),new Option("BAREMEF",'')];
+      else {
+        this.question.options.optionsset = [new Option("BAREMEAB", value), new Option("BAREMETB", ''), new Option("BAREMEF", '')];
       }
       // @ts-ignore
       this.notationNumAB = this.question.options[0].valeur;
       this.questionService.reloadQCM(this.QCM);
     }
-    else{
+    else {
       // @ts-ignore
       document.getElementById("notaAB").value = this.notationNumAB;
     }
   }
 
   modifyNotationTB(value: string) {
-    if(this.isNumber(value)){
-      if(this.question.options && this.question.options.optionsset.length>0){
+    if (this.isNumber(value)) {
+      if (this.question.options && this.question.options.optionsset.length > 0) {
         this.question.options.optionsset[1].valeur = value;
       }
-      else{
-        this.question.options.optionsset = [new Option("BAREMEAB",''),new Option("BAREMETB",value),new Option("BAREMEF",'')];
+      else {
+        this.question.options.optionsset = [new Option("BAREMEAB", ''), new Option("BAREMETB", value), new Option("BAREMEF", '')];
       }
       // @ts-ignore
       this.notationNumTB = this.question.options[1].valeur;
       this.questionService.reloadQCM(this.QCM);
     }
-    else{
+    else {
       // @ts-ignore
       document.getElementById("notaTB").value = this.notationNumTB;
     }
   }
 
   deleteNotationF() {
-    if(this.notationNumF.length===1){
+    if (this.notationNumF.length === 1) {
       // @ts-ignore
       this.question.options[2].valeur = '';
       this.notationNumF = '';
@@ -133,7 +133,7 @@ export class CreationQuestionOuverteComponent implements OnInit {
   }
 
   deleteNotationAB() {
-    if(this.notationNumAB.length===1){
+    if (this.notationNumAB.length === 1) {
       // @ts-ignore
       this.question.options[0].valeur = '';
       this.notationNumAB = '';
@@ -142,7 +142,7 @@ export class CreationQuestionOuverteComponent implements OnInit {
   }
 
   deleteNotationTB() {
-    if(this.notationNumTB.length===1){
+    if (this.notationNumTB.length === 1) {
       // @ts-ignore
       this.question.options[1].valeur = '';
       this.notationNumTB = '';
