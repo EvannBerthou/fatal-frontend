@@ -22,7 +22,7 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.questionService.QCMActuel.subscribe(value => {
+    /*this.questionService.QCMActuel.subscribe(value => {
       this.QCM = value;
       this.questionService.categorieActuel.subscribe(val => {
         this.categorie = val;
@@ -56,11 +56,11 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
         })
       });
 
-    });
+    });*/
   }
 
 
-  modifyReponse(value: string) {
+  /*modifyReponse(value: string) {
     if (this.isNumber(value)) {
       if (this.question.reponses.length > 0) {
         this.question.reponses[0].texte = value;
@@ -123,6 +123,6 @@ export class CreationQuestionNumeriqueComponent implements OnInit {
       this.notationNum = '';
       this.questionService.reloadQCM(this.QCM);
     }
-  }
+  }*/
 }
 

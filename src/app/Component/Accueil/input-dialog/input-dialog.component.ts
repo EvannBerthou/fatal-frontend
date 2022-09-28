@@ -18,7 +18,7 @@ export class InputDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<InputDialogComponent>, @Inject(MAT_DIALOG_DATA) public data:any, private questionService :QuestionService) { }
 
   ngOnInit(): void {
-    this.questionService.categorieActuel.subscribe(res => this.categorie = res);
+    //this.questionService.categorieActuel.subscribe(res => this.categorie = res);
   }
 
   onClick(name: string) {
@@ -27,7 +27,7 @@ export class InputDialogComponent implements OnInit {
     }
   }
 
-  onChange(value: string) {
+ /* onChange(value: string) {
     this.invalide = false;
     this.categorie.questions.forEach(ques =>{
       ques.categorie = this.categorie.nom
@@ -37,5 +37,5 @@ export class InputDialogComponent implements OnInit {
       }
 
     })
-  }
+  }*/
 }

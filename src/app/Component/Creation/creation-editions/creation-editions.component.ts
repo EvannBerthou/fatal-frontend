@@ -49,7 +49,7 @@ export class CreationEditionsComponent implements OnInit {
   url: any;
 
   ngOnInit(): void {
-    this.questionService.QCMActuel.subscribe(r=>{
+    /*this.questionService.QCMActuel.subscribe(r=>{
       this.qcm =r;
     });
     if(!this.questionService.isNotSaved.value)
@@ -64,14 +64,14 @@ export class CreationEditionsComponent implements OnInit {
             this.pdf = null;
           }
         }
-      )
+      )*/
   }
 
-  generateQCM() {
+  /*generateQCM() {
     let requ;
     if(!this.questionService.isNotSaved.value){
       if (this.qcm != undefined) {
-        /*if (this.selectedClasse != undefined) {
+        if (this.selectedClasse != undefined) {
           if (this.selectedGroupe != undefined) {
             requ = this.qcmService.generateNewQCM(this.qcm, this.selectedClasse.id, this.selectedGroupe.id);
           }
@@ -99,7 +99,7 @@ export class CreationEditionsComponent implements OnInit {
           this.errormessage = "Merci de sélectionner une classe et éventuellement un groupe avant de générer un QCM";
           this.isGenerate = false;
           this.pdf = null;
-        }*/
+        }
         requ = this.qcmService.generateNewQCM(this.qcm, undefined, null);
         requ.subscribe()
         this.isGenerate = true;
@@ -137,6 +137,6 @@ export class CreationEditionsComponent implements OnInit {
         this.selectedGroupe = this.groupes[i];
       }
     }
-  }
+  }*/
 }
 

@@ -23,7 +23,7 @@ export class CreationQuestionOuverteComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.questionService.QCMActuel.subscribe(value => {
+    /*this.questionService.QCMActuel.subscribe(value => {
       this.QCM = value;
       this.questionService.categorieActuel.subscribe(val => {
         this.categorie = val;
@@ -51,7 +51,7 @@ export class CreationQuestionOuverteComponent implements OnInit {
         });
       });
 
-    });
+    });*/
   }
   isNumber(str: string): boolean {
     if (typeof str !== 'string') {
@@ -65,7 +65,7 @@ export class CreationQuestionOuverteComponent implements OnInit {
     return !Number.isNaN(Number(str));
   }
 
-  modifyNotationF(value: string) {
+  /*modifyNotationF(value: string) {
     if (this.isNumber(value)) {
       if (this.question.options && this.question.options.optionsset.length > 0) {
         this.question.options.optionsset[2].valeur = value;
@@ -103,9 +103,9 @@ export class CreationQuestionOuverteComponent implements OnInit {
       // @ts-ignore
       document.getElementById("notaAB").value = this.notationNumAB;
     }
-  }
+  }*/
 
-  modifyNotationTB(value: string) {
+  /*modifyNotationTB(value: string) {
     if (this.isNumber(value)) {
       if (this.question.options && this.question.options.optionsset.length > 0) {
         this.question.options.optionsset[1].valeur = value;
@@ -115,20 +115,20 @@ export class CreationQuestionOuverteComponent implements OnInit {
       }
       // @ts-ignore
       this.notationNumTB = this.question.options[1].valeur;
-      this.questionService.reloadQCM(this.QCM);
+      //this.questionService.reloadQCM(this.QCM);
     }
     else {
       // @ts-ignore
       document.getElementById("notaTB").value = this.notationNumTB;
     }
-  }
+  }*/
 
   deleteNotationF() {
     if (this.notationNumF.length === 1) {
       // @ts-ignore
       this.question.options[2].valeur = '';
       this.notationNumF = '';
-      this.questionService.reloadQCM(this.QCM);
+      //this.questionService.reloadQCM(this.QCM);
     }
   }
 
@@ -137,7 +137,7 @@ export class CreationQuestionOuverteComponent implements OnInit {
       // @ts-ignore
       this.question.options[0].valeur = '';
       this.notationNumAB = '';
-      this.questionService.reloadQCM(this.QCM);
+      //this.questionService.reloadQCM(this.QCM);
     }
   }
 
@@ -146,7 +146,7 @@ export class CreationQuestionOuverteComponent implements OnInit {
       // @ts-ignore
       this.question.options[1].valeur = '';
       this.notationNumTB = '';
-      this.questionService.reloadQCM(this.QCM);
+      //this.questionService.reloadQCM(this.QCM);
     }
   }
 }

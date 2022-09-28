@@ -27,6 +27,7 @@ export class CreationQCMComponent {
 
     const id = this.route.snapshot.params['id'];
     this.qcm$ = this.qcmService.getQCMFromId(id)
+    console.log(this.qcm$.subscribe(r=> console.log(r)))
   }
 
   /*

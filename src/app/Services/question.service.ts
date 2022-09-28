@@ -9,7 +9,7 @@ import {Options} from "../Modeles/OPTIONS";
   providedIn: 'root'
 })
 export class QuestionService {
-  questionActuel = new BehaviorSubject(new Question('nullll', 'null', [],"",new Options('null',[])));
+  /*questionActuel = new BehaviorSubject(new Question('nullll', 'null', [],"",new Options('null',[])));
   categorieActuel = new BehaviorSubject(new Categorie('nu', [new Question('nul', 'null', [],"",new Options('null',[]))]));
   QCMActuel = new BehaviorSubject(new QCM([],'',false,"null",'null'));
   isNotSaved = new BehaviorSubject(false);
@@ -30,5 +30,5 @@ export class QuestionService {
   reloadQCM(QCM : QCM) {
     this.isNotSaved.next(true);
     this.QCMActuel.next(QCM);
-  }
+  }*/
 }

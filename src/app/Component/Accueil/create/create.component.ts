@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
 
   constructor(public dialog: MatDialog, public router: Router, private questionService : QuestionService, private authentificationService: AuthenticationService) { }
 
-  openDialog(): void {
+  /*openDialog(): void {
     if(this.type == 'creer'){
       const dialogRef = this.dialog.open(InputDialogComponent, {
         width: '35%',
@@ -44,7 +44,7 @@ export class CreateComponent implements OnInit {
       });
     }
 
-  }
+  }*/
 
   ngOnInit(): void {
   }

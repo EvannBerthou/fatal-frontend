@@ -39,22 +39,22 @@ export class CreationParametresComponent implements OnInit {
 
   constructor( private questionService: QuestionService) { }
   ngOnInit(): void {
-    this.questionService.QCMActuel.subscribe(value => {
+    /*this.questionService.QCMActuel.subscribe(value => {
       this.QCM = value;
       this.dataSource = new MatTableDataSource<Categorie>(this.QCM.categories);
       this.selected = this.QCM.isRandomized ===false ? "non-1" : "oui-0";
       this.questionService.categorieActuel.subscribe(val =>{
         this.categorie = val;
       });
-    });
+    });*/
   }
 
-  modifyEntete(value: string) {
+  /*modifyEntete(value: string) {
     this.QCM.entete = value;
     this.questionService.reloadQCM(this.QCM);
   }
 
-  /*modifyDuree(value: string) {
+  modifyDuree(value: string) {
     if(this.isNumber(value)){
       if(this.question.reponses.length>0){
         this.question.reponses[0].contain = value;
@@ -80,9 +80,9 @@ export class CreationParametresComponent implements OnInit {
     }
     return !Number.isNaN(Number(str));
   }
-*/
+
   setChange(){
     this.QCM.isRandomized = (this.selected !== "non-1");
     this.questionService.reloadQCM(this.QCM);
-  }
+  }*/
 }

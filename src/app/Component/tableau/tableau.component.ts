@@ -52,7 +52,7 @@ export class TableauComponent implements OnInit {
       if (result)
         localStorage.removeItem("selector");
       localStorage.removeItem('QCM');
-      this.questionService.reloadQCM(QCM.createEmptyQCM(this.authentService.getId()!.toString()));
+      //this.questionService.reloadQCM(QCM.createEmptyQCM(this.authentService.getId()!.toString()));
       this.router.navigate(['/creation', result])
     });
 

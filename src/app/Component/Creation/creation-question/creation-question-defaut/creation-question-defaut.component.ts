@@ -13,9 +13,9 @@ import { Option } from "../../../../Modeles/OPTION";
 })
 
 export class CreationQuestionDefautComponent implements OnInit {
+  @Input() question?: Question;
   QCM !: QCM;
   categorie!: Categorie;
-  question!: Question;
   editMode: Boolean = false;
   notationNum: any;
   @Output() reponseChange = new EventEmitter();
@@ -24,23 +24,17 @@ export class CreationQuestionDefautComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.questionService.QCMActuel.subscribe(value => {
+    /*this.questionService.QCMActuel.subscribe(value => {
       this.QCM = value;
       this.questionService.categorieActuel.subscribe(val => {
         this.categorie = val;
         this.questionService.questionActuel.subscribe(valu => {
           this.question = valu;
           this.QCM.categories.forEach(x => {
-            if (x.nom === this.categorie.nom) {
+            if (x.texte === this.categorie.texte) {
               x.questions.forEach((y: any) => {
-                if (y.intitule === this.question.intitule) {
+                if (y.intitule === this.question.texte) {
                   this.question = y;
-                  if (this.question.options && this.question.options.optionsset.length > 0) {
-                    this.notationNum = this.question.options.optionsset[0].valeur;
-                  }
-                  else {
-                    this.notationNum = '';
-                  }
                   if (this.question.reponses.length < 2) {
                     if (this.question.reponses.length < 1) {
                       this.question.reponses.push(new Reponse('', false));
@@ -54,9 +48,9 @@ export class CreationQuestionDefautComponent implements OnInit {
         });
       });
 
-    });
+    });*/
   }
-
+/*
   addAnswer() {
     this.question.reponses.push(new Reponse('', false));
     this.questionService.reloadQCM(this.QCM);
@@ -120,5 +114,5 @@ export class CreationQuestionDefautComponent implements OnInit {
       this.notationNum = '';
       this.questionService.reloadQCM(this.QCM);
     }
-  }
+  }*/
 }
