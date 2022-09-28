@@ -1,38 +1,28 @@
-import { Component, Injectable, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { InputDialogComponent } from '../../Accueil/input-dialog/input-dialog.component';
-import { Categorie, ICategorie } from "../../../Modeles/CATEGORIE";
-import { Question } from "../../../Modeles/QUESTION";
-import { QuestionService } from "../../../Services/question.service";
 import { QCM } from "../../../Modeles/QCM";
-import { Options } from "../../../Modeles/OPTIONS";
 
 @Component({
   selector: 'app-creation-questions',
   templateUrl: './creation-questions.component.html',
   styleUrls: ['./creation-questions.component.scss']
 })
-
 export class CreationQuestionsComponent implements OnInit {
   @Input() qcm!: QCM;
   selectedCategorie?: any;
   selectedQuestion?: any;
 
-  selector: Categorie = new Categorie("null", [new Question("Question 1", "UNIQUE", [], "", new Options('null', []))]);
-  selectorQ: Question = this.selector.questions[0];
-  categorieType: string = "categorie";
-  questionType: string = "question";
-
-  constructor(public dialog: MatDialog, public router: Router, private questionService: QuestionService) { }
+  constructor(public dialog: MatDialog, public router: Router) { }
 
   ngOnInit(): void {
     this.selectedCategorie = this.qcm.categories[0];
-    this.selectedQuestion = this.selectedCategorie.questions[0];
+    this.selectedQuestion = this.selectedCategorie?.questions[0];
   }
 
   selectCategorie(categorie: any) {
     this.selectedCategorie = categorie;
+    this.selectedQuestion = this.selectedCategorie.questions[0];
   }
 
   selectQuestion(question: any) {
@@ -63,67 +53,6 @@ export class CreationQuestionsComponent implements OnInit {
 
   addQuestion(): void {
     this.ajoutQuestion();
-  }
-
-  ajoutCategorie(categorieName: string) {
-    let categorie = new Categorie(categorieName, [new Question("", "UNIQUE", [], "", new Options('null', []))])
-    this.questionService.categorieActuel.next(categorie);
-    this.questionService.questionActuel.next(categorie.questions[0]);//pb
-    this.questionService.categorieActuel.subscribe(res => this.selector = res);
-    this.categories.push(categorie);
-    this.QCM.categories = this.categories
-    //localStorage.setItem('categories',JSON.stringify(this.categories));
-    this.questionService.reloadQCM(this.QCM);
-    this.questions = categorie.questions;
-  }
-
-
-  loadQCMFromStorage() {
-    const tabCategories = JSON.parse(localStorage.getItem('QCM')!);
-    console.log(tabCategories);
-    if (tabCategories == null || tabCategories.length == 0) {
-      this.categories = [];
-      this.questionService.QCMActuel.subscribe(res => {
-        this.QCM = res;
-      });
-    }
-    else if (tabCategories.categories.length < 1) {
-      this.categories = [];
-      this.questionService.QCMActuel.subscribe(res => {
-        this.QCM = res;
-      });
-    }
-    else {
-      this.QCM = tabCategories;
-      this.categories = this.QCM.categories;
-      this.questions = this.QCM.categories[0].questions;
-      this.questionService.categorieActuel.next(this.categories[0]);
-      this.questionService.questionActuel.next(this.categories[0].questions[0])
-      this.questionService.questionActuel.subscribe(res => this.selectorQ = res);
-      this.questionService.QCMActuel.next(tabCategories);
-      this.questionService.QCMActuel.subscribe(res => {
-        this.QCM = res;
-      });
-    }
-  }
-
-  private ajoutQuestion() {
-    let question = new Question('', "UNIQUE", [], "", new Options('UNIQUE', []));
-    this.questions.push(question);
-    this.questionService.questionActuel.next(question);
-    this.questionService.reloadQCM(this.QCM);
-    //localStorage.setItem('categories',JSON.stringify(this.categories));
-  }
-
-  setCategorie(categorie: Categorie) {
-    this.selector = categorie;
-    this.questions = categorie.questions;
-    this.questionService.categorieActuel.next(categorie);
-    this.questionService.questionActuel.next(categorie.questions[0]);
-  }
-
-  setQuestion(question: Question) {
-    this.questionService.questionActuel.next(question);
   }
   */
 }
