@@ -14,47 +14,40 @@ export class CreationTabComponent implements OnInit {
   selector: string = 'QUESTIONS';
   showQuestions = false;
 
-  step: string = this.route.snapshot.params['step'];
+  step: string = 'questions';
+
+  private progessByTab: any = {
+    'questions': 33.3,
+    'parametres': 66.6,
+    'edition': 100
+  }
 
   constructor(private router: Router, private route: ActivatedRoute) {
-    if (this.step !== 'questions' && this.step !== 'parametres' && this.step !== 'edition') {
-      //TODO: Rediriger vers /creation/:id/questions au lieu de juste forcer le changement
-      this.step = 'questions';
-    }
   }
 
   ngOnInit(): void {
-    if (!localStorage.getItem("selector")) {
-      this.onQuestions();
-    }
-    else {
-      if (localStorage.getItem("selector") === "PARAMETRES")
-        this.onParametres();
-      else if (localStorage.getItem("selector") === "EDITION")
-        this.onEdition();
-    }
+    this.setStep(this.route.snapshot.params['step']);
   }
+
+  setStep(step: string) {
+    this.step = step;
+    if (!Object.keys(this.progessByTab).includes(this.step)) {
+      this.step = 'questions';
+    }
+
+    this.router.navigate([`creation/${this.qcm.id}/${this.step}`]);
+    this.progress = this.progessByTab[this.step];
+  }
+
   onQuestions() {
-    this.showQuestions = true;
-    this.progress = 33.3;
-    localStorage.setItem("selector", "QUESTIONS");
-    this.selector = <string>localStorage.getItem("selector");
-    //this.router.navigate(['creation/' + this.title + '/questions']);
+    this.setStep('questions');
   }
 
   onParametres() {
-    this.showQuestions = false;
-    this.progress = 66.6;
-    localStorage.setItem("selector", "PARAMETRES");
-    this.selector = <string>localStorage.getItem("selector");
-    //this.router.navigate(['creation/' + this.title + '/parametres']);
+    this.setStep('parametres');
   }
 
   onEdition() {
-    this.showQuestions = false;
-    this.progress = 100;
-    localStorage.setItem("selector", "EDITION");
-    this.selector = <string>localStorage.getItem("selector");
-    //this.router.navigate(['creation/' + this.title + '/edition']);
+    this.setStep('edition');
   }
 }
