@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { QcmService } from "../../Services/qcm.service";
 import { QuestionService } from "../../Services/question.service";
 import { QCM } from "../../Modeles/QCM";
-import { Options } from "../../Modeles/OPTIONS";
 import { Option } from "../../Modeles/OPTION";
 import { NotificationService } from "../../Services/notification.service";
 import { DialogDeleteComponent } from "../../Component/dialog-delete/dialog-delete.component";

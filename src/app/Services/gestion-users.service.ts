@@ -12,8 +12,8 @@ export class GestionUsersService {
 
   constructor(router: Router, private http: HttpClient) {this.router=router }
 
-  createUser(username: string, email: string,name: string, surname:string,password:string) {
-    let user = new User(username,email,name,surname,password,false,[])
+  createUser(username: string, email: string,name: string, surname:string) {
+    let user = ({id : 0,username : 'username' ,email: 'email' ,prenom : 'name' ,nom : 'surname',admin: false}) as User;
 
     return this.http.post("/user",JSON.stringify(user)).pipe(map((res)=>{
       return res

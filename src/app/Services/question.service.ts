@@ -3,7 +3,6 @@ import {Question} from "../Modeles/QUESTION";
 import {BehaviorSubject, Observable, range} from "rxjs";
 import {Categorie} from "../Modeles/CATEGORIE";
 import {QCM} from "../Modeles/QCM";
-import {Options} from "../Modeles/OPTIONS";
 
 @Injectable({
   providedIn: 'root'

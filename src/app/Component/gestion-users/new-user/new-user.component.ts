@@ -39,7 +39,7 @@ export class NewUserComponent implements OnInit {
       this.errorMessage = "Merci de remplir tous les champs"
     }
     else{
-      this.service.createUser(this.username,this.email,this.name,this.surname,this.password).subscribe(r=>{
+      this.service.createUser(this.username,this.email,this.name,this.surname).subscribe(r=>{
           if(r == "-2"){
             this.error = true
             this.errorMessage = "Merci de composer un email correctement formé"

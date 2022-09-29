@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { tap } from "rxjs/operators";
-import { Utilisateur } from "../Modeles/Utilisateur";
+import { User } from "../Modeles/USER";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  user: Utilisateur | undefined = undefined;
+  user: User | undefined = undefined;
 
   constructor(private http: HttpClient) {
     const user = sessionStorage.getItem('user');
-    this.user = user ? JSON.parse(user) as Utilisateur : undefined;
+    this.user = user ? JSON.parse(user) as User : undefined;
   }
 
 

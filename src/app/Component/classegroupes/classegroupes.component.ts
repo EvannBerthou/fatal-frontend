@@ -5,7 +5,7 @@ import {Classe, IClasse} from "../../Modeles/CLASSE";
 import {Groupe, IGroupe} from "../../Modeles/GROUPE";
 import {GroupeService} from "../../groupe.service";
 import {GestionUsersService} from "../../Services/gestion-users.service";
-import {IUser, User} from "../../Modeles/USER";
+import {User} from "../../Modeles/USER";
 import {group} from "@angular/animations";
 
 @Component({
@@ -17,7 +17,7 @@ export class ClassegroupesComponent implements OnInit {
   id = sessionStorage.getItem("ID");
   classes: IClasse[] = [];
   groupes: IGroupe[] = [];
-  user: User | null= new User('','','','','',false,null);
+  user: User | null= ({id : 0,username : 'username' ,email: 'email' ,prenom : 'name' ,nom : 'surname',admin: false}) as User;
   dataSource!: MatTableDataSource<IClasse>;
   displayedColumns: string[] = ['name', 'partOf', 'groupes','join','unownclass'];
   displayedColumnsGroupes: string[] = ['name', 'partOf', 'join','unowngroup'];
@@ -30,7 +30,7 @@ export class ClassegroupesComponent implements OnInit {
       });
     }
     this.classeService.getClasses().subscribe(r=>{
-      for(let i = 0; i < r.length ; i++){
+      /*for(let i = 0; i < r.length ; i++){
         r[i].professeurs.forEach(user=>{
           if(user.id == this.id){
             r[i].estmaclasse = true;
@@ -38,7 +38,7 @@ export class ClassegroupesComponent implements OnInit {
         })
         this.classes.push(r[i]);
         this.dataSource = new MatTableDataSource<IClasse>(this.classes)
-      }
+      }*/
     });
   }
 
@@ -51,7 +51,7 @@ export class ClassegroupesComponent implements OnInit {
   }
 
   showGroups(classe: Classe) {
-    this.groupeService.getGroupes(classe).subscribe(r=>{
+    /*this.groupeService.getGroupes(classe).subscribe(r=>{
       for(let i = 0; i < r.length ; i++) {
         r[i].professeurs.forEach(user => {
           if (user.id == this.id) {
@@ -61,7 +61,7 @@ export class ClassegroupesComponent implements OnInit {
       }
       this.groupes = r;
       console.log(this.groupes)
-    })
+    })*/
   }
 
   ownClasse(classe : Classe) {

@@ -5,7 +5,6 @@ import { Question } from "../../../../Modeles/QUESTION";
 import { QCM } from "../../../../Modeles/QCM";
 import { QuestionService } from "../../../../Services/question.service";
 import { Option } from "../../../../Modeles/OPTION";
-import { Options } from "../../../../Modeles/OPTIONS";
 
 @Component({
   selector: 'app-creation-question-ouverte',

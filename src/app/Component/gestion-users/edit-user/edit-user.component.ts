@@ -75,7 +75,6 @@ export class EditUserComponent implements OnInit {
     let user;
     this.service.getUserFromId(username).subscribe(rId => {
       if (rId != null) {
-        rId.password = password
         this.service.resetPassword(rId).subscribe(r => {
           if (r != null) {
             this.id = r;
