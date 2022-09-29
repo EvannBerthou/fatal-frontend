@@ -23,7 +23,8 @@
     <mat-divider></mat-divider>
   </div>
   <div class="div4">
-    <app-creation-question-defaut *ngIf="selectedQuestion.typedequestion ==='multiple'"></app-creation-question-defaut>
+    <app-creation-question-defaut *ngIf="selectedQuestion.typedequestion ==='multiple'" [question]="selectedQuestion">
+    </app-creation-question-defaut>
     <app-creation-question-numerique *ngIf="selectedQuestion.typedequestion ==='numerique'">
     </app-creation-question-numerique>
     <app-creation-question-ouverte *ngIf="selectedQuestion.typedequestion === 'ouverte'">

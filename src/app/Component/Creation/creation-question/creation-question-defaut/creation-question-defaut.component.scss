@@ -1,76 +1,42 @@
-.body {
+:host {
   width: 100%;
   height: auto;
   display: flex;
   justify-content: space-around;
+
+  div {
+    width: 100%;
+  }
 }
 
-.divLeft {
-  width: 50%;
-}
-.divRight{
-  width: 30%
-}
-.reponses{
+.reponse {
   display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
 }
-.reponse{
-  width: 100%;
-  height: 75px;
-  display: flex;
-  justify-content: space-between;
 
-}
-img{
-  width: 19px;
-  height: 19px;
-}
-.delete:hover{
-  margin-top: 4px;
-}
-.delete{
+.delete {
   background-color: darkred;
-  width: 10px;
   height: 10px;
-  margin-top: 2px;
+  width: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.form-reponse{
-  width: 90%;
-  display: flex;
-  flex-direction: column;
+  cursor: pointer;
+  color: white;
 
+  &::content {
+    font-size: 1.5em;
+  }
+
+  &:hover {
+    background-color: rgb(175, 4, 4);
+  }
 }
-.not-selectable{
-  pointer-events: none;
-}
-.mat1{
-  width: 100%;
-}
-.mat{
-  width: 100%;
-}
-::ng-deep.selected{
+
+::ng-deep.selected {
   .mat-form-field-label {
     color: #7CE73B;
     font-weight: bold;
   }
-}
-.good{
-  color: white;
-  -webkit-user-select: none;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.4rem;
-  cursor: pointer;
-}
-.goodClick{
-  background-color: #3F51B5;
-}
-.goodIdle{
-  background-color: #7384E2;
 }

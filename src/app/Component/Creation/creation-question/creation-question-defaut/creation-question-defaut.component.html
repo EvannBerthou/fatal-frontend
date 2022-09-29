@@ -1,28 +1,20 @@
-<div class="body">
-  <div class="divLeft">
-    <div *ngFor="let reponse of question?.reponses" class="reponses">
-      <div class="reponse">
-<!--         <div class="mat1" [ngClass]="editMode === true ? 'curseur':''" (click)="modifyIsGodd(reponse)">
-          <div class="mat" [ngClass]="editMode ===true ? 'not-selectable': ''">
-            <mat-form-field [ngClass]="reponse.isGood ? 'selected' : ''" class="form-reponse" appearance="outline">
-              <mat-label>Réponse {{question.reponses.indexOf(reponse)+1}}</mat-label>
-               <input #inputRep matInput value="{{reponse.texte}}" (keyup)="modifyReponse(reponse, inputRep.value)">
-            </mat-form-field>
-          </div>
-        </div>
-         <mat-card class="curseur delete" (click)="deleteAnswer(reponse)"><img src="assets/img/icons8-cross-mark-96.png" alt=""></mat-card>
-      --></div>
+<div>
+  <div *ngFor="let reponse of question?.reponses; let index = index" class="reponses">
+    <div class="reponse">
+      <mat-form-field [ngClass]="{'selected': reponse.isRight}" appearance="outline">
+        <mat-label>Réponse {{index}}</mat-label>
+        <input matInput value="{{reponse.texte}}">
+      </mat-form-field>
+
+      <mat-card class="delete">&#10006;</mat-card>
     </div>
-     <app-creation-add ></app-creation-add>
   </div>
-  <div class="divRight">
-    <mat-form-field appearance="outline" id="notation">
-      <mat-label>Notation</mat-label>
-       <input id="nota" matInput #notation type="number">
-    </mat-form-field>
-    <mat-card  [ngClass]="editMode ? 'good goodClick' : 'good goodIdle'" (click)="editMode ? editMode = false : editMode = true">Bonne réponse</mat-card>
-  </div>
+  <app-creation-add></app-creation-add>
 </div>
 
-
-
+<div>
+  <mat-form-field appearance="outline" id="notation">
+    <mat-label>Notation</mat-label>
+    <input id="nota" matInput type="number">
+  </mat-form-field>
+</div>
