@@ -20,7 +20,7 @@ import {CreationQCMComponent} from "../../../Pages/creation-qcm/creation-qcm.com
   styleUrls: ['./creation-editions.component.scss']
 })
 export class CreationEditionsComponent implements OnInit {
-  qcm : QCM | undefined;
+  @Input() qcm!: QCM;
   id : any = sessionStorage.getItem('ID');
   groupes : Groupe[] = [];
   classes : Classe[] = [];
@@ -67,9 +67,9 @@ export class CreationEditionsComponent implements OnInit {
       )*/
   }
 
-  /*generateQCM() {
+  generateQCM() {
     let requ;
-    if(!this.questionService.isNotSaved.value){
+    /*if(!this.questionService.isNotSaved.value){
       if (this.qcm != undefined) {
         if (this.selectedClasse != undefined) {
           if (this.selectedGroupe != undefined) {
@@ -100,12 +100,13 @@ export class CreationEditionsComponent implements OnInit {
           this.isGenerate = false;
           this.pdf = null;
         }
-        requ = this.qcmService.generateNewQCM(this.qcm, undefined, null);
-        requ.subscribe()
         this.isGenerate = true;
       }
-    }
+    }*/
+    requ = this.qcmService.generateNewQCM(this.qcm, undefined, null);
+    requ.subscribe()
   }
+  /*
 
   telechargerPdf() {
     window.open(this.url);
