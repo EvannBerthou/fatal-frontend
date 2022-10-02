@@ -13,5 +13,5 @@
 </div>
 
 <app-creation-questions *ngIf="step === 'questions'" [qcm]="qcm"></app-creation-questions>
-<app-creation-parametres *ngIf="step === 'parametres'"></app-creation-parametres>
-<app-creation-editions *ngIf="step === 'edition'"></app-creation-editions>
+<app-creation-parametres *ngIf="step === 'parametres'" [qcm]="qcm"></app-creation-parametres>
+<app-creation-editions *ngIf="step === 'edition'" [qcm]="qcm"></app-creation-editions>
