@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {QuestionService} from "../../../Services/question.service";
 import {Categorie} from "../../../Modeles/CATEGORIE";
 import {Question} from "../../../Modeles/QUESTION";
@@ -27,7 +27,7 @@ export class CreationParametresComponent implements OnInit {
 
   displayedColumns: string[] = ['nom', 'nombre', 'total'];
   dataSource!: MatTableDataSource<Categorie>;
-  QCM !: QCM;
+  @Input() qcm!: QCM;
   categorie!: Categorie;
   question!: Question;
 
@@ -39,6 +39,7 @@ export class CreationParametresComponent implements OnInit {
 
   constructor( private questionService: QuestionService) { }
   ngOnInit(): void {
+    console.log(this.qcm)
     /*this.questionService.QCMActuel.subscribe(value => {
       this.QCM = value;
       this.dataSource = new MatTableDataSource<Categorie>(this.QCM.categories);
