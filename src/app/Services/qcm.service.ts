@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, map, retry, tap } from "rxjs/operators";
 import { QCM } from "../Modeles/QCM";
 import { NotificationService } from "./notification.service";
 
@@ -52,14 +52,12 @@ export class QcmService {
     );
   }
 
-  getPDFFromIdAndId(idcreateur: string | undefined, id: number | undefined) {
-    return fetch(`/pdf/${idcreateur}/${id}`)
-      .then(r =>
-        r.blob()
-      ).then(r => {
-        const file = new Blob([r], { type: 'application/pdf' });
-        return file;
-      })
+  getPDFFromId(QCM: QCM): any{
+    return this.http.get(
+      `/PDF/${QCM.id}`,
+      {headers: new HttpHeaders(
+        { 'Content-Type': 'application/pdf' },
+        ),responseType: 'blob'})
   }
 
   private errorable(http: any, errorMessage: string) {
