@@ -22,6 +22,7 @@ import {CreationQCMComponent} from "../../../Pages/creation-qcm/creation-qcm.com
 export class CreationEditionsComponent implements OnInit {
   @Input() qcm!: QCM;
   id : any = sessionStorage.getItem('ID');
+  
   groupes : Groupe[] = [];
   classes : Classe[] = [];
   selectedClasse : any = null;
@@ -65,6 +66,12 @@ export class CreationEditionsComponent implements OnInit {
           }
         }
       )*/
+      this.qcmService.getPDFFromId(this.qcm).subscribe((r:any) => {
+        this.pdf = r;
+        let url = window.URL.createObjectURL(r);
+        this.pdf = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        this.isGenerate = true;
+      })
   }
 
   generateQCM() {
@@ -109,7 +116,6 @@ export class CreationEditionsComponent implements OnInit {
       if (r.exitstatus == 0) {
         this.isGenerate = true;
         this.qcmService.getPDFFromId(this.qcm).subscribe((r:any) => {
-            console.log(r)
             this.pdf = r;
             let url = window.URL.createObjectURL(r);
             this.pdf = this.sanitizer.bypassSecurityTrustResourceUrl(url);
