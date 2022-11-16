@@ -66,11 +66,13 @@ export class CreationEditionsComponent implements OnInit {
           }
         }
       )*/
-      this.qcmService.getPDFFromId(this.qcm).subscribe((r:any) => {
-        this.pdf = r;
-        let url = window.URL.createObjectURL(r);
-        this.pdf = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-        this.isGenerate = true;
+      this.qcmService.getPDFFromId(this.qcm).subscribe((r:Blob) => {
+        if(r.size > 0){
+          this.pdf = r;
+          let url = window.URL.createObjectURL(r);
+          this.pdf = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+          this.isGenerate = true;
+        }
       })
   }
 
