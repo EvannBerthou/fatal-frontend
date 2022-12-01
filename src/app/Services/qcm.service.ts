@@ -60,7 +60,11 @@ export class QcmService {
         ),responseType: 'blob'})
   }
 
-  private errorable(http: any, errorMessage: string) {
+  getRecentQCMs(): Observable<QCM[]> {
+    return this.errorable(this.http.get<QCM[]>('/qcms/recent'), 'Erreur lors de la reception des QCMs recents');
+  }
+
+  private errorable(http: any, errorMessage: string): Observable<any> {
     return http.pipe(catchError(this.handleError<number>(errorMessage)));
   }
 }
