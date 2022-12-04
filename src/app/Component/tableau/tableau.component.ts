@@ -28,7 +28,7 @@ export class TableauComponent implements OnInit {
   constructor(public dialog: MatDialog, private service: QcmService, private questionService: QuestionService, private router: Router, private authentService: AuthenticationService) {
   }
 
-  displayedColumns: string[] = ['name', 'modify', 'mark', 'correction'];
+  displayedColumns: string[] = ['modify', 'mark', 'correction'];
 
   ngOnInit(): void {
   }

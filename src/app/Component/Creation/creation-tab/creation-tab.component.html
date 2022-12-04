@@ -1,17 +1,14 @@
 <div class="tab">
-  <div class="tab-top">
-    <app-creation-tab-title [title]="'QUESTIONS'" (click)="onQuestions()">
+  <div class="tab-top shadow-elements">
+    <app-creation-tab-title [title]="'questions'" [running]="running"  (click)="onQuestions()" class="questions" >
     </app-creation-tab-title>
-    <app-creation-tab-title [title]="'PARAMETRES'" (click)="onParametres()">
+    <app-creation-tab-title [title]="'parametres'" [running]="running"(click)="onParametres()" class="parametres">
     </app-creation-tab-title>
-    <app-creation-tab-title [title]="'EDITION'" (click)="onEdition()">
+    <app-creation-tab-title [title]="'edition'"  [running]="running" (click)="onEdition()" class="edition"> 
     </app-creation-tab-title>
-  </div>
-  <div class="tab-bottom">
-    <mat-progress-bar class="progress" mode="determinate" value="{{progress}}"></mat-progress-bar>
   </div>
 </div>
 
-<app-creation-questions *ngIf="step === 'questions'" [qcm]="qcm"></app-creation-questions>
-<app-creation-parametres *ngIf="step === 'parametres'" [qcm]="qcm"></app-creation-parametres>
-<app-creation-editions *ngIf="step === 'edition'" [qcm]="qcm"></app-creation-editions>
+<app-creation-questions *ngIf="running === step.QUESTIONS" [qcm]="qcm"></app-creation-questions>
+<app-creation-parametres *ngIf="running === step.PARAMETRES" [qcm]="qcm"></app-creation-parametres>
+<app-creation-editions *ngIf="running === step.EDITION" [qcm]="qcm"></app-creation-editions>

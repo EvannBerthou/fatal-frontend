@@ -1,8 +1,19 @@
 .tab-top {
   display: flex;
-
   app-creation-tab-title {
     flex: 1;
     cursor: pointer;
+
   }
+  margin-bottom: 10px;
+}
+
+.questions{
+  border-radius: 30px 0 0 30px; 
+  overflow: hidden;
+}
+
+.edition{
+  border-radius: 0 30px 30px 0; 
+  overflow: hidden;
 }

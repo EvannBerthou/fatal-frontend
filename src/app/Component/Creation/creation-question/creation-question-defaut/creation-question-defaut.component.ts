@@ -12,6 +12,7 @@ import { Option } from "../../../../Modeles/OPTION";
   styleUrls: ['./creation-question-defaut.component.scss']
 })
 
+
 export class CreationQuestionDefautComponent implements OnInit {
   @Input() question?: Question;
   QCM !: QCM;
@@ -20,6 +21,8 @@ export class CreationQuestionDefautComponent implements OnInit {
   notationNum: any;
   @Output() reponseChange = new EventEmitter();
 
+
+  
   constructor(private questionService: QuestionService) {
   }
 

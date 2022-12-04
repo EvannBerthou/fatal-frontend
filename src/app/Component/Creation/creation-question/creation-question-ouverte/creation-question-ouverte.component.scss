@@ -3,3 +3,17 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+#faux,#ab,#tb{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    margin: 20px;
+    overflow: hidden;
+    height: fit-content;
+    background-color: var(--background);
+}
+
+mat-form-field{
+    width: 70%;
+}
