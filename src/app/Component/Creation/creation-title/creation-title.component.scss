@@ -7,6 +7,7 @@
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
+
 }
 .selected{
   font-weight: normal;
@@ -14,4 +15,15 @@
 .unselected{
   color: var(--background);
   font-weight: normal;
+}
+
+.titre{
+  width: 50%;
+  text-transform: capitalize;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+  overflow: hidden;
+  height: fit-content;
+  background-color: var(--background);
 }

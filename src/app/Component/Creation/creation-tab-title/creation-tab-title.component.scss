@@ -7,11 +7,10 @@
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
+  text-transform: capitalize;
+  color: gray;
 }
 .selected{
   font-weight: normal;
-}
-.unselected{
-  color: lighten(black,50%);
-  font-weight: normal;
+  color: black;
 }

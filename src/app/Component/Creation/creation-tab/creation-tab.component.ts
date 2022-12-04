@@ -2,19 +2,27 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { QCM } from 'src/app/Modeles/QCM';
 
+
+enum step {
+  QUESTIONS="questions",
+  PARAMETRES="parametres",
+  EDITION="edition",
+}
+
 @Component({
   selector: 'app-creation-tab',
   templateUrl: './creation-tab.component.html',
   styleUrls: ['./creation-tab.component.scss']
 })
 export class CreationTabComponent implements OnInit {
+
+  step = step;
   @Input() qcm!: QCM;
 
-  progress: number = 33.3;
-  selector: string = 'QUESTIONS';
+  selector: step = step.QUESTIONS;
   showQuestions = false;
 
-  step: string = 'questions';
+  running: step = step.QUESTIONS;
 
   private progessByTab: any = {
     'questions': 33.3,
@@ -29,25 +37,20 @@ export class CreationTabComponent implements OnInit {
     this.setStep(this.route.snapshot.params['step']);
   }
 
-  setStep(step: string) {
-    this.step = step;
-    if (!Object.keys(this.progessByTab).includes(this.step)) {
-      this.step = 'questions';
-    }
-
-    this.router.navigate([`creation/${this.qcm.id}/${this.step}`]);
-    this.progress = this.progessByTab[this.step];
+  setStep(step: step) {
+    this.running = step;
+    this.router.navigate([`creation/${this.qcm.id}/${this.running}`]);
   }
 
   onQuestions() {
-    this.setStep('questions');
+    this.setStep(step.QUESTIONS);
   }
 
   onParametres() {
-    this.setStep('parametres');
+    this.setStep(step.PARAMETRES);
   }
 
   onEdition() {
-    this.setStep('edition');
+    this.setStep(step.EDITION);
   }
 }

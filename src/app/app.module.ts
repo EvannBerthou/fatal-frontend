@@ -66,6 +66,7 @@ import { NotesComponent } from './Component/notes/notes.component';
 import { ClassegroupesComponent } from './Component/classegroupes/classegroupes.component';
 import { MatSnackBarModule} from "@angular/material/snack-bar";
 import {DialogDeleteComponent} from "./Component/dialog-delete/dialog-delete.component";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 // import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
@@ -140,6 +141,7 @@ import {DialogDeleteComponent} from "./Component/dialog-delete/dialog-delete.com
     MatListModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatCheckboxModule
     // SweetAlert2Module.forChild()
   ],
   providers: [{

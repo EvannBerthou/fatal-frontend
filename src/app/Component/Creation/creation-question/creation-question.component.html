@@ -1,15 +1,10 @@
 <mat-card>
-  <div class="div1">
-
+  <div>
+    <mat-card-title>Informations</mat-card-title>
+    <mat-divider></mat-divider>
   </div>
-  <div class="div2">
-    <mat-form-field appearance="outline" id="question">
-      <mat-label>Question?</mat-label>
-      <input matInput placeholder="ma question?" value="{{selectedQuestion.texte}}">
-    </mat-form-field>
-  </div>
-  <div class="div3">
-    <mat-form-field appearance="outline" id="type">
+  <div class="champ-type shadow-elements">
+    <mat-form-field appearance="standard" id="type">
       <mat-label>Type</mat-label>
       <mat-select [(value)]="selectedQuestion.typedequestion">
         <mat-option *ngFor="let selectedChoix of choix" [value]="selectedChoix.value">
@@ -18,7 +13,13 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="not">
+  <div class="champ-question shadow-elements">
+    <mat-form-field appearance="standard" id="question">
+      <mat-label>Titre</mat-label>
+      <input matInput value="{{selectedQuestion.texte}}">
+    </mat-form-field>
+  </div>
+  <div>
     <mat-card-title>Notation</mat-card-title>
     <mat-divider></mat-divider>
   </div>

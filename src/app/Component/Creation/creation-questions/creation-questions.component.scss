@@ -28,13 +28,15 @@ img{
 .categorie{
   width: 100%;
   cursor: pointer;
-
 }
-.categories{
+
+.categories,.questions{
   margin-top:10px;
   display: flex;
   flex-direction: column;
-  width: 19%
+  width: 19%;
+  overflow: hidden;
+  height: fit-content;
 }
 
 .wrapper{

@@ -1,42 +1,26 @@
-:host {
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: space-around;
-
-  div {
-    width: 100%;
-  }
+.points{
+  width:88%;
 }
 
-.reponse {
+
+p{text-align: center;}
+
+
+img{
+  width:2rem;
+}
+
+mat-form-field{
+  width: 80%;
+}
+
+.reponse,.notation,.add-question{
   display: flex;
   align-items: baseline;
   justify-content: space-evenly;
-}
-
-.delete {
-  background-color: darkred;
-  height: 10px;
-  width: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: white;
-
-  &::content {
-    font-size: 1.5em;
-  }
-
-  &:hover {
-    background-color: rgb(175, 4, 4);
-  }
-}
-
-::ng-deep.selected {
-  .mat-form-field-label {
-    color: #7CE73B;
-    font-weight: bold;
-  }
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  height: fit-content;
+  background-color: var(--background);
 }

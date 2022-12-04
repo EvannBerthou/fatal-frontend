@@ -1,11 +1,14 @@
-.body {
-  width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 60% 30%;
-  grid-template-rows: 8vh;
-  grid-column-gap: 10%;
-  mat-form-field{
-    width: 100%;
-  }
+.points{
+  width:88%;
+}
+
+.notation{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  height: fit-content;
+  background-color: var(--background);
 }
