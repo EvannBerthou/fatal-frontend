@@ -3,11 +3,33 @@
   padding: 3rem;
   background-color: white;
   text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-#texte{
+.entete-div,.duree,.melanger{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: var(--background);
+  width: 70%;
   position: relative;
-  width: 60%;
+}
+
+.duree{
+  margin-left: 10px;
+}
+
+.melanger{
+  margin-right: 10px;
+}
+
+#entete,#duree,#melanger{
+  width: 85%;
+}
+
+input{
+  text-transform: capitalize;
 }
 
 .center{
@@ -15,12 +37,9 @@
   justify-content: space-around;
 }
 
-table{
-  margin-left: 10%;
-  width: 80%;
+.table_params{
   text-align: justify ;
-}
-
-th{
-  color: #3F51B5;
+  overflow:hidden;
+  background-color: var(--background);
+  width: 70%;
 }
