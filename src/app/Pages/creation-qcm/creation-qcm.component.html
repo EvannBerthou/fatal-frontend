@@ -1,15 +1,3 @@
-<!--
-<div class="wrapper">
-  <div class="top">
-    <app-bouton (click)="deleteQcm()" [name]="'Supprimer'"></app-bouton>
-    <app-creation-title [title]="name" class="title"></app-creation-title>
-    <app-bouton (click)="checkSave()" [name]="'Sauvegarder'" [select]="isNotSaved"></app-bouton>
-
-  </div>
-  <app-creation-tab [title]="qc.titre"></app-creation-tab>
-</div>
--->
-
 <div class="wrapper" *ngIf="qcm$ | async as qcm">
   <app-creation-title [title]="qcm.titre" class="title"></app-creation-title>
   <app-creation-tab [qcm]="qcm"></app-creation-tab>

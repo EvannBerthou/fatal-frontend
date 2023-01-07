@@ -5,10 +5,7 @@
   </mat-form-field>
 </div>
 
-<div class="rep">
-  <mat-card-title>Réponses</mat-card-title>
-  <mat-divider></mat-divider>
-</div>
+<app-separator> Réponses </app-separator>
 
 <div class="reponses">
   <div *ngFor="let reponse of question?.reponses; let index = index" class="reponse shadow-elements">
