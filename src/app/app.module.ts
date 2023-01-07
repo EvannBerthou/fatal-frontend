@@ -67,6 +67,7 @@ import { ClassegroupesComponent } from './Component/classegroupes/classegroupes.
 import { MatSnackBarModule} from "@angular/material/snack-bar";
 import {DialogDeleteComponent} from "./Component/dialog-delete/dialog-delete.component";
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SeparatorComponent } from './separator/separator.component';
 
 
 // import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
@@ -113,7 +114,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     DragAndDropDirective,
     NotesComponent,
     ClassegroupesComponent,
-    DialogDeleteComponent
+    DialogDeleteComponent,
+    SeparatorComponent
   ],
   imports: [
     BrowserModule,

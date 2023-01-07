@@ -1,8 +1,6 @@
 <mat-card>
-  <div>
-    <mat-card-title>Informations</mat-card-title>
-    <mat-divider></mat-divider>
-  </div>
+  <app-separator> Informations </app-separator>
+  
   <div class="champ-type shadow-elements">
     <mat-form-field appearance="standard" id="type">
       <mat-label>Type</mat-label>
@@ -19,16 +17,14 @@
       <input matInput value="{{selectedQuestion.texte}}">
     </mat-form-field>
   </div>
-  <div>
-    <mat-card-title>Notation</mat-card-title>
-    <mat-divider></mat-divider>
-  </div>
-  <div class="div4">
-    <app-creation-question-defaut *ngIf="selectedQuestion.typedequestion ==='multiple'" [question]="selectedQuestion">
-    </app-creation-question-defaut>
-    <app-creation-question-numerique *ngIf="selectedQuestion.typedequestion ==='numerique'">
-    </app-creation-question-numerique>
-    <app-creation-question-ouverte *ngIf="selectedQuestion.typedequestion === 'ouverte'">
-    </app-creation-question-ouverte>
-  </div>
+
+  <app-separator> Notation </app-separator>
+
+  <app-creation-question-defaut *ngIf="selectedQuestion.typedequestion ==='multiple'" [question]="selectedQuestion">
+  </app-creation-question-defaut>
+  <app-creation-question-numerique *ngIf="selectedQuestion.typedequestion ==='numerique'">
+  </app-creation-question-numerique>
+  <app-creation-question-ouverte *ngIf="selectedQuestion.typedequestion === 'ouverte'">
+  </app-creation-question-ouverte>
+
 </mat-card>

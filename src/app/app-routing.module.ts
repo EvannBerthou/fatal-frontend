@@ -6,9 +6,6 @@ import { AccueilComponent } from "./Pages/accueil/accueil.component";
 import { CreationQCMComponent } from "./Pages/creation-qcm/creation-qcm.component";
 import { MesQCMComponent } from "./Pages/mes-qcm/mes-qcm.component";
 import { MesEtudiantsComponent } from "./Pages/mes-etudiants/mes-etudiants.component";
-import { CreationQuestionsComponent } from "./Component/Creation/creation-questions/creation-questions.component";
-import { CreationParametresComponent } from "./Component/Creation/creation-parametres/creation-parametres.component";
-import { CreationEditionsComponent } from "./Component/Creation/creation-editions/creation-editions.component";
 import { ConnexionComponent } from "./Component/Connexion/connexion.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { GestionUsersComponent } from "./Component/gestion-users/gestion-users.component";
@@ -57,6 +54,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
-  
+
 })
 export class AppRoutingModule { }
