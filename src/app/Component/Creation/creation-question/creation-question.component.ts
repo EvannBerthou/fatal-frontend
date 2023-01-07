@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
 
 interface Choix {
   value: string;
@@ -19,24 +18,4 @@ export class CreationQuestionComponent {
     { value: 'ouverte', viewValue: 'Ouverte' },
     { value: 'numerique', viewValue: 'Numérique' },
   ];
-
-  constructor(public dialog: MatDialog) {
-  }
-
-  /*
-  modifyName() {
-    const dialogRef = this.dialog.open(InputDialogComponent, {
-      width: '35%',
-      height: '17%',
-      panelClass: 'custom-dialog-container',
-      data: { button: 'Modifier', placeholder: 'Nom', name: this.selectedQuestion.texte },
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.modifyQuestionName(result);
-        this.questionService.isNotSaved.next(false);
-      }
-    });
-  }
-  */
 }
