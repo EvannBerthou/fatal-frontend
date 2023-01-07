@@ -25,12 +25,12 @@ img{
   user-select: none;
 }
 
-.categorie{
+.categorie, .question {
   width: 100%;
   cursor: pointer;
 }
 
-.categories,.questions{
+.categories, .questions{
   margin-top:10px;
   display: flex;
   flex-direction: column;

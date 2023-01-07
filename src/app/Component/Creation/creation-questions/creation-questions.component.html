@@ -1,5 +1,5 @@
 <div *ngIf="qcm?.categories?.length == 0" class="main-div">
-  <mat-card>
+  <mat-card (click)="addQuestion()">
     <mat-card-header>
       <mat-card-title>AJOUTER UNE CATEGORIE</mat-card-title>
     </mat-card-header>
@@ -12,13 +12,13 @@
     <app-creation-card *ngFor="let categorie of qcm.categories" [title]="categorie.texte"
       [isSelected]="selectedCategorie === categorie" class="categorie" (click)="selectCategorie(categorie)">
     </app-creation-card>
-    <app-creation-add claass="categorie"></app-creation-add>
+    <app-creation-add claass="categorie" (click)="addCategorie()"></app-creation-add>
   </div>
   <div class="questions shadow-elements">
     <app-creation-card *ngFor="let question of selectedCategorie?.questions" [title]='question.texte'
-      [isSelected]="selectedQuestion === question" class="categorie" (click)="selectQuestion(question)">
+      [isSelected]="selectedQuestion === question" class="question" (click)="selectQuestion(question)">
     </app-creation-card>
-    <app-creation-add class="categorie"></app-creation-add>
+    <app-creation-add class="question" (click)="addQuestion()"></app-creation-add>
   </div>
   <app-creation-question *ngIf="selectedQuestion" [selectedQuestion]="selectedQuestion" style="margin-bottom: 10px;"></app-creation-question>
 </div>

@@ -11,10 +11,11 @@
       </mat-select>
     </mat-form-field>
   </div>
+  
   <div class="champ-question shadow-elements">
     <mat-form-field appearance="standard" id="question">
       <mat-label>Titre</mat-label>
-      <input matInput value="{{selectedQuestion.texte}}">
+      <input matInput [(ngModel)]="selectedQuestion.texte">
     </mat-form-field>
   </div>
 
