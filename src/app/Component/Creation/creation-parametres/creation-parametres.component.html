@@ -1,28 +1,32 @@
-<div class="main">
-
-  <mat-form-field appearance="fill" id="texte">
-    <mat-label>Texte d'entête du QCM</mat-label>
-    <textarea matInput #entete value="{{qcm.entete}}" placeholder="Ex. Contrôle de Maths"></textarea>
-  </mat-form-field>
-
-  <div class="center">
-    <mat-form-field appearance="fill">
-      <mat-label>Mélanger</mat-label>
-      <mat-select [(value)]="selected">
-        <mat-option *ngFor="let choi of choix" [value]="choi.value" >
-          {{choi.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field  appearance="fill">
-      <mat-label>Durée (min)</mat-label>
-      <input matInput type="number">
+<div class="main shadow-elements">
+  <div class="entete-div shadow-elements">
+    <mat-form-field appearance="standard" id="entete">
+      <mat-label>Texte d'entête du QCM</mat-label>
+      <input matInput value="{{qcm.entete}}" placeholder="Ex. Contrôle de Maths">
     </mat-form-field>
   </div>
 
+  <div class="center">
+    <div class="melanger shadow-elements">
+      <mat-form-field appearance="standard" id="melanger">
+        <mat-label>Mélanger</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="let choi of choix" [value]="choi.value" >
+            {{choi.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-    <table *ngIf="qcm.categories.length>0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="duree shadow-elements">
+      <mat-form-field appearance="standard" id="duree">
+        <mat-label>Durée (min)</mat-label>
+        <input matInput type="number">
+      </mat-form-field>
+    </div>
+  </div>
+
+    <table *ngIf="qcm.categories.length>0" mat-table [dataSource]="dataSource" class="shadow-elements table_params">
 
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef> Nom de la catégorie </th>
