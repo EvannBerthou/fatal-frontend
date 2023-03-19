@@ -1,4 +1,4 @@
 <div class="wrapper" *ngIf="qcm$ | async as qcm">
-  <app-creation-title [title]="qcm.titre" class="title"></app-creation-title>
+  <app-creation-title [qcm]="qcm" [title]="qcm.titre" class="title"></app-creation-title>
   <app-creation-tab [qcm]="qcm"></app-creation-tab>
 </div>

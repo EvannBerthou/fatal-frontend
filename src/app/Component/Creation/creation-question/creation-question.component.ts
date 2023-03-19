@@ -12,8 +12,6 @@ interface Choix {
 })
 export class CreationQuestionComponent {
   @Input() selectedQuestion!: any;
-  @Output() saveNotification: EventEmitter<void> = new EventEmitter();
-  @Input() saving!: Boolean;
 
   choix: Choix[] = [
     { value: 'multiple', viewValue: 'Multiple' },
@@ -21,7 +19,4 @@ export class CreationQuestionComponent {
     { value: 'numerique', viewValue: 'Numérique' },
   ];
 
-  saveQCM(): void {
-    this.saveNotification.emit();
-  }
 }
