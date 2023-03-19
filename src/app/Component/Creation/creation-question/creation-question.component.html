@@ -1,4 +1,6 @@
 <mat-card>
+  <button (click)="saveQCM()"> Sauvegarder </button>
+
   <app-separator> Informations </app-separator>
   
   <div class="champ-type shadow-elements">
@@ -27,5 +29,4 @@
   </app-creation-question-numerique>
   <app-creation-question-ouverte *ngIf="selectedQuestion.typedequestion === 'ouverte'">
   </app-creation-question-ouverte>
-
 </mat-card>

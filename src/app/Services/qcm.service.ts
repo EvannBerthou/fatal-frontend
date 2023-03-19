@@ -35,12 +35,15 @@ export class QcmService {
     return this.errorable(this.http.get<QCM>(`/qcms/${id}`, this.httpOptions), 'Ne parviens pas à récupérer le QCM');
   }
 
-  modifyQCM(QCM: QCM): Observable<QCM> {
-    return this.errorable(this.http.put<QCM>(`/qcm`, QCM, this.httpOptions), 'Ne parviens pas à modifier le QCM');
+  saveQCM(qcm: QCM): Observable<QCM> {
+    // Si le QCM à déjà un ID, alors il faut update le QCM (PUT), sinon il faut créer un nouveau QCM (POST)
+    if (qcm.id) {
+      return this.errorable(this.http.put<QCM>(`/qcms/${qcm.id}`, {qcm}, this.httpOptions), 'Ne parviens pas à modifier le QCM');
+    }
+    return this.errorable(this.http.post<QCM>(`/qcms`, {qcm}, this.httpOptions), 'Ne parviens pas à crééer le QCM');
   }
 
   createNewQCM(QCM: QCM): Observable<number> {
-    //delete QCM.id;
     return this.http.post<number>(`/qcm`, QCM, this.httpOptions)
   }
 

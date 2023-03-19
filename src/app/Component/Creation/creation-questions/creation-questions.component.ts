@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import { Categorie } from 'src/app/Modeles/CATEGORIE';
 import { Question } from 'src/app/Modeles/QUESTION';
 import { Reponse } from 'src/app/Modeles/REPONSE';
+import { QcmService } from 'src/app/Services/qcm.service';
 import { QCM } from "../../../Modeles/QCM";
 import { InputDialogComponent } from '../../Accueil/input-dialog/input-dialog.component';
 
@@ -18,7 +19,7 @@ export class CreationQuestionsComponent implements OnInit {
   selectedCategorie!: Categorie;
   selectedQuestion!: Question;
 
-  constructor(public dialog: MatDialog, public router: Router) { }
+  constructor(public dialog: MatDialog, public router: Router, private qcmService: QcmService) { }
 
   ngOnInit(): void {
     this.selectCategorie(this.qcm.categories[0]);
@@ -43,6 +44,10 @@ export class CreationQuestionsComponent implements OnInit {
     this.getPopupInputName('Question').subscribe(texte => {
       this.selectedCategorie.questions.push({ texte, reponses: [] as Reponse[] } as Question);
     });
+  }
+
+  saveQCM(): void {
+    this.qcmService.saveQCM(this.qcm).subscribe(_ => console.log('Saved'));
   }
 
   /**

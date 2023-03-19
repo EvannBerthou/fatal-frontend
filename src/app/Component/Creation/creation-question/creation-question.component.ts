@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 interface Choix {
   value: string;
@@ -12,10 +12,15 @@ interface Choix {
 })
 export class CreationQuestionComponent {
   @Input() selectedQuestion!: any;
+  @Output() saveNotification: EventEmitter<void> = new EventEmitter();
 
   choix: Choix[] = [
     { value: 'multiple', viewValue: 'Multiple' },
     { value: 'ouverte', viewValue: 'Ouverte' },
     { value: 'numerique', viewValue: 'Numérique' },
   ];
+
+  saveQCM(): void {
+    this.saveNotification.emit();
+  }
 }
