@@ -6,7 +6,7 @@
 }
 .title{
   flex:1;
-  max-width:20%;
+  max-width:90%;
 }
 #fill{
   visibility: hidden;
@@ -21,7 +21,10 @@ app-creation-tab{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 80%;
+  width: 90%;
   margin-top: 20px;
 }
 
+app-creation-title{
+  width:90%;
+}
