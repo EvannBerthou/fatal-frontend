@@ -47,14 +47,6 @@ export class CreationQuestionsComponent implements OnInit {
     });
   }
 
-  saveQCM(): void {
-    this.saving = true;
-    this.qcmService.saveQCM(this.qcm).subscribe(_ => {
-      this.qcm =_;
-      this.saving = false;
-    });
-  }
-
   /**
    *
    * @param placeholder Le texte qui sera affiché en indication dans le pop-up
