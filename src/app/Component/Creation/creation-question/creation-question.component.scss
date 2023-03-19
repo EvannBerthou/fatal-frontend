@@ -7,7 +7,7 @@ mat-card {
     width: 100%;
   }
 
-  border-radius: 30px; 
+  border-radius: 30px;
   box-shadow: 7px 7px var(--primary) !important;
   overflow: hidden;
   height: fit-content;
@@ -59,4 +59,8 @@ mat-label{
 app-creation-question-defaut{
   display: flex;
   flex-direction: column;
+}
+
+#global-question-edition{
+  padding: 2%;
 }

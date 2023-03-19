@@ -23,12 +23,12 @@ export class CreationTitleComponent implements OnInit {
   }
 
   saveQCM(): void {
-    if(!this.saving){
-      this.saving = true;
-      this.qcmService.saveQCM(this.qcm).subscribe(_ => {
-        this.qcm =_;
-        this.saving = false;
-      });
-    }
+    if(this.saving) return;
+
+    this.saving = true;
+    this.qcmService.saveQCM(this.qcm).subscribe(response => {
+      this.qcm = response;
+      this.saving = false;
+    });
   }
 }

@@ -1,6 +1,6 @@
 <div class="entete">
   <div id="e1">
-    <div  class="save" onclick="saveQCM()" *ngIf="saving"><mat-spinner [diameter]="20"></mat-spinner>
+    <div  class="save" (click)="saveQCM()" *ngIf="saving"><mat-spinner [diameter]="20"></mat-spinner>
       <div id="save-msg">Sauvegarde en cours ...</div>
       </div>
   </div>
