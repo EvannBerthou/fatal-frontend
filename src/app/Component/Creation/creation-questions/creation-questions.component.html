@@ -20,5 +20,5 @@
     </app-creation-card>
     <app-creation-add class="question" (click)="addQuestion()"></app-creation-add>
   </div>
-  <app-creation-question *ngIf="selectedQuestion" [selectedQuestion]="selectedQuestion" style="margin-bottom: 10px;" (saveNotification)="saveQCM()"></app-creation-question>
+  <app-creation-question *ngIf="selectedQuestion" [selectedQuestion]="selectedQuestion" [saving]="saving" style="margin-bottom: 10px;" (saveNotification)="saveQCM()"></app-creation-question>
 </div>

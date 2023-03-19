@@ -1,8 +1,8 @@
 <mat-card>
-  <button (click)="saveQCM()"> Sauvegarder </button>
+  <button [disabled]=this.saving (click)="saveQCM()"> Sauvegarder </button>
 
   <app-separator> Informations </app-separator>
-  
+
   <div class="champ-type shadow-elements">
     <mat-form-field appearance="standard" id="type">
       <mat-label>Type</mat-label>
@@ -13,7 +13,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  
+
   <div class="champ-question shadow-elements">
     <mat-form-field appearance="standard" id="question">
       <mat-label>Titre</mat-label>
