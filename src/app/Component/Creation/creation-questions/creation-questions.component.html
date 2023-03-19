@@ -12,13 +12,23 @@
     <app-creation-card *ngFor="let categorie of qcm.categories" [title]="categorie.texte"
       [isSelected]="selectedCategorie === categorie" class="categorie" (click)="selectCategorie(categorie)">
     </app-creation-card>
-    <app-creation-add claass="categorie" (click)="addCategorie()"></app-creation-add>
+    <mat-card class="delete-btn" (click)="deleteCategorie()">
+      <mat-icon>remove_circle</mat-icon>
+    </mat-card>
+    <mat-card class="add-btn" (click)="addCategorie()">
+      <mat-icon>add_circle</mat-icon>
+    </mat-card>
   </div>
   <div class="questions shadow-elements">
     <app-creation-card *ngFor="let question of selectedCategorie?.questions" [title]='question.texte'
       [isSelected]="selectedQuestion === question" class="question" (click)="selectQuestion(question)">
     </app-creation-card>
-    <app-creation-add class="question" (click)="addQuestion()"></app-creation-add>
+    <mat-card class="delete-btn" (click)="deleteQuestion()">
+      <mat-icon>remove_circle</mat-icon>
+    </mat-card>
+    <mat-card class="add-btn" (click)="addQuestion()">
+      <mat-icon>add_circle</mat-icon>
+    </mat-card>
   </div>
   <app-creation-question *ngIf="selectedQuestion" [selectedQuestion]="selectedQuestion" style="margin-bottom: 10px;"></app-creation-question>
 </div>

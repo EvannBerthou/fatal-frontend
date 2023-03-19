@@ -49,3 +49,14 @@ app-creation-question{
   margin-top:10px;
   width: 60%;
 }
+
+.delete-btn{
+  background-color: red;
+  margin: 0;
+  max-width: 100%;
+}
+.add-btn{
+  background-color: var(--primary);
+  margin: 0;
+  max-width: 100%;
+}

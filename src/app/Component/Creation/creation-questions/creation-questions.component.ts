@@ -60,4 +60,16 @@ export class CreationQuestionsComponent implements OnInit {
       data: { button: 'Créer', placeholder },
     }).afterClosed().pipe(filter(result => result))
   }
+
+  deleteCategorie(){
+    this.qcm.categories.splice(this.qcm.categories.indexOf(this.selectedCategorie),1)
+    this.selectCategorie(this.qcm.categories[0])
+  }
+  deleteQuestion(){
+    const index = this.qcm.categories.indexOf(this.selectedCategorie);
+    const categorie = this.qcm.categories[index];
+    const questionIndex = categorie.questions.indexOf(this.selectedQuestion);
+    categorie.questions.splice(questionIndex, 1);
+    this.selectCategorie(this.selectedCategorie)
+  }
 }
