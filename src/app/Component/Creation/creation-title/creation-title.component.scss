@@ -18,12 +18,35 @@
 }
 
 .titre{
-  width: 50%;
-  text-transform: capitalize;
+  font-size: 25px;
+  padding-top: 20px;
+  text-decoration:underline;
+}
+
+.save{
+  padding-top: 20px;
   display: flex;
-  align-items: baseline;
-  justify-content: space-evenly;
-  overflow: hidden;
-  height: fit-content;
-  background-color: var(--background);
+}
+
+#save-msg{
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.entete{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#e1,#e2,#e3{
+  width: 33%;
+  text-align: center;
+}
+
+.loading_button{
+  width: 15%;
+  margin-left: auto;
+  margin-right: 0;
+  color:black;
 }

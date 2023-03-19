@@ -1,6 +1,16 @@
-<mat-card class="titre shadow-elements">
-  <mat-card-title id="{{title}}">
+<div class="entete">
+  <div id="e1">
+    <div  class="save" onclick="saveQCM()" *ngIf="saving"><mat-spinner [diameter]="20"></mat-spinner>
+      <div id="save-msg">Sauvegarde en cours ...</div>
+      </div>
+  </div>
+
+  <div id="e2" class="titre">
     {{title}}
-  </mat-card-title>
-</mat-card>
+  </div>
+
+  <div id="e3">
+    <mat-card (click)="saveQCM()" class="shadow-elements loading_button"> Sauvegarder </mat-card>
+  </div>
+</div>
 
