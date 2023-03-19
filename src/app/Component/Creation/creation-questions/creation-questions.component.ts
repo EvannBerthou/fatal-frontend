@@ -18,6 +18,7 @@ export class CreationQuestionsComponent implements OnInit {
   @Input() qcm!: QCM;
   selectedCategorie!: Categorie;
   selectedQuestion!: Question;
+  saving = false;
 
   constructor(public dialog: MatDialog, public router: Router, private qcmService: QcmService) { }
 
@@ -47,11 +48,15 @@ export class CreationQuestionsComponent implements OnInit {
   }
 
   saveQCM(): void {
-    this.qcmService.saveQCM(this.qcm).subscribe(_ => console.log('Saved'));
+    this.saving = true;
+    this.qcmService.saveQCM(this.qcm).subscribe(_ => {
+      this.qcm =_;
+      this.saving = false;
+    });
   }
 
   /**
-   * 
+   *
    * @param placeholder Le texte qui sera affiché en indication dans le pop-up
    * @returns Un observable uniquement si un résultat à été donné
    */
