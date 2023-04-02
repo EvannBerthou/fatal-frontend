@@ -1,0 +1,12 @@
+<div class="tab-top">
+  <app-creation-tab-title [title]="'questions'" [activated]="selector === Step.Questions" (click)="onQuestions()">
+  </app-creation-tab-title>
+  <app-creation-tab-title [title]="'parametres'" [activated]="selector === Step.Paramatres" (click)="onParametres()">
+  </app-creation-tab-title>
+  <app-creation-tab-title [title]="'edition'" [activated]="selector === Step.Edition" (click)="onEdition()">
+  </app-creation-tab-title>
+</div>
+
+<app-creation-questions *ngIf="selector === Step.Questions" [qcm]="qcm"></app-creation-questions>
+<app-creation-parametres *ngIf="selector === Step.Paramatres" [qcm]="qcm"></app-creation-parametres>
+<app-creation-editions *ngIf="selector === Step.Edition" [qcm]="qcm"></app-creation-editions>

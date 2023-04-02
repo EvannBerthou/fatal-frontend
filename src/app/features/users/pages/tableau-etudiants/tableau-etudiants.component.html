@@ -1,0 +1,62 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>MES ETUDIANTS</mat-card-title>
+  </mat-card-header>
+  <div class="searchBar">
+    <input class="searchInput" type="text" placeholder="Chercher un étudiant..." (keyup)="applyFilter($event)">
+  </div>
+  <table mat-table [dataSource]="dataSource" class="table">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nom </th>
+      <td mat-cell class="name" *matCellDef="let etudiant"> {{etudiant.nom}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef> Prénom </th>
+      <td mat-cell class="name" *matCellDef="let etudiant"> {{etudiant.prenom}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="numetu">
+      <th mat-header-cell *matHeaderCellDef> N° Étudiant </th>
+      <td mat-cell class="name" *matCellDef="let etudiant"> {{etudiant.noetudiant}} </td>
+    </ng-container>
+
+    <!-- Class Column -->
+    <ng-container matColumnDef="class">
+      <th mat-header-cell *matHeaderCellDef> Classe </th>
+      <td mat-cell class="class" *matCellDef="let etudiant"> {{etudiant.classe}} </td>
+    </ng-container>
+
+    <!-- Group Column -->
+    <ng-container matColumnDef="group">
+      <th mat-header-cell *matHeaderCellDef> Groupe </th>
+      <td mat-cell class="group" *matCellDef="let etudiant"> {{etudiant.groupe}} </td>
+    </ng-container>
+
+    <!-- Profil Column -->
+    <ng-container matColumnDef="profil">
+      <th mat-header-cell *matHeaderCellDef> Profil </th>
+      <td mat-cell *matCellDef="let etudiant"><button mat-raised-button color="primary" class="mat-button" type="button"
+          (click)="showProfil(etudiant)">Profil</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row>Hey</tr>
+  </table>
+  <button type="button" class="add" (click)="openDialog()"><mat-icon> add </mat-icon></button>
+</mat-card>
+
+<div>
+  <form>
+    <mat-card>
+      <h2>Ajout d'étudiants par csv</h2>
+      <input type='file' accept=".csv">
+    </mat-card>
+    <button type="button" [ngClass]="isFileHere?'add':'unselected'">Ajouter</button>
+  </form>
+  <h3 *ngIf="added > -1"><b>{{added}}</b> étudiants importés</h3>
+</div>

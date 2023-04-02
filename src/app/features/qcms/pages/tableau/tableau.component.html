@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <mat-card class="searchBar shadow-elements">
+    <input class="searchInput" type="text" placeholder="Chercher un QCM..." (keyup)="applyFilter($event)" />
+  </mat-card>
+
+  <table *ngIf="qcms$ | async as qcms" mat-table [dataSource]="qcms" class="qcms">
+    <ng-container matColumnDef="modify">
+      <mat-card [routerLink]="['/creation', qcm.id, 'questions']" class="edit shadow-elements loading_button"
+        *matCellDef="let qcm">
+        {{ qcm.titre }} | {{ qcm.updated_at | date : "dd-MM-yy hh:mm" }}
+      </mat-card>
+    </ng-container>
+
+    <ng-container matColumnDef="mark">
+      <mat-card [routerLink]="['/correction/', qcm.id]" class="copies shadow-elements loading_button"
+        *matCellDef="let qcm">
+        <mat-icon> attach_file </mat-icon>
+      </mat-card>
+    </ng-container>
+
+    <ng-container matColumnDef="correction">
+      <mat-card [routerLink]="['/notes', qcm.id]" class="correction shadow-elements loading_button"
+        *matCellDef="let qcm">
+        <mat-icon> check_circle </mat-icon>
+      </mat-card>
+    </ng-container>
+    <tr class="qcm" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-card (click)="openDialog()" class="add shadow-elements loading_button">
+    <mat-icon> add </mat-icon>
+  </mat-card>
+</div>

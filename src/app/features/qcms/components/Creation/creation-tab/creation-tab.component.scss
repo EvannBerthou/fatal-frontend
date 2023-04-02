@@ -1,0 +1,8 @@
+.tab-top {
+  display: flex;
+
+  app-creation-tab-title {
+    flex: 1;
+    cursor: pointer;
+  }
+}

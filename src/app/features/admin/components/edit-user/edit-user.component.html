@@ -1,0 +1,13 @@
+<h1> Gestion d'utilisateurs </h1>
+
+<form>
+  <input class="username" type="text" placeholder="ID ou Nom d'utilisateur">
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)="findUser()"> Rechercher </button>
+    <button mat-raised-button color="primary" (click)="deleteUser()"> Supprimer </button>
+    <button mat-raised-button color="primary" (click)="updateUser()"> Modifier </button>
+    <button mat-raised-button color="primary" (click)="resetPassword()"> Réinitialiser le mot de passe</button>
+  </div>
+</form>
+
+<app-user-informations-form></app-user-informations-form>

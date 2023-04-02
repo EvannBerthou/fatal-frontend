@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>{{qcm.titre}}</mat-card-title>
+    <mat-card-subtitle>Dernière modification le {{qcm.updated_at | date:'dd/MM/yy à hh:mm'}}</mat-card-subtitle>
+  </mat-card-title-group>
+  <mat-card-content>
+    <ul>
+      <li>ID: {{qcm.id}}</li>
+      <li>Entete: {{qcm.entete}}</li>
+      <li>Nombre de catégories: {{qcm.categories.length}}</li>
+    </ul>
+  </mat-card-content>
+</mat-card>

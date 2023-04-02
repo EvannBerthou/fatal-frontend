@@ -1,0 +1,66 @@
+mat-card {
+  padding: 5%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  mat-form-field{
+    width: 100%;
+  }
+
+  border-radius: 30px;
+  box-shadow: 7px 7px var(--primary) !important;
+  overflow: hidden;
+  height: fit-content;
+  font-size: 18px;
+}
+.champ-type {margin-bottom: 10px;}
+.champ-question { grid-area: 2}
+.champ-question,.champ-type{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  height: fit-content;
+  background-color: var(--background);
+}
+
+
+mat-form-field{
+  width: 80%;
+}
+
+
+#type,#question{
+  width: 90%;
+}
+
+#good{
+  color: white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #3F51B5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  cursor: pointer;
+}
+.name:hover {
+  font-weight: bold;
+}
+
+mat-label{
+  font-size: 20px;
+}
+
+app-creation-question-defaut{
+  display: flex;
+  flex-direction: column;
+}
+
+#global-question-edition {
+  padding: 2%;
+}

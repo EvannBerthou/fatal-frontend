@@ -1,0 +1,46 @@
+<mat-toolbar *ngIf="user" class="shadow-elements">
+  <img src="assets/img/logoDeptaFull.png" alt="logo" draggable="false">
+  <ul>
+    <li class="nav-item-accueil">
+      <a routerLink="/accueil"> <mat-icon>home</mat-icon></a>
+    </li>
+    <li class="nav-item-mesQCM">
+      <a routerLink="/mesqcm"> <mat-icon>check_box</mat-icon></a>
+    </li>
+    <li class="nav-item-mesEtudiants">
+      <a routerLink="/etudiants"> <mat-icon>person</mat-icon></a>
+    </li>
+    <li class="nav-item-classegroupes">
+      <a routerLink="/classesgroupes"> <mat-icon>people</mat-icon></a>
+    </li>
+  </ul>
+
+  <span class="example-spacer"> </span>
+
+  <div class="dropdown" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+    <button (click)="onDisplayDropdown()" class="dropbtn">
+      <i class="fas fa-user-circle"></i>
+      <span> {{user.nom}} </span>
+    </button>
+    <div [hidden]="!showDropDown" class="contenu-dropdown">
+      <div class="ligne">
+        <i class="fas fa-user-circle"></i>
+        <a routerLink="/monprofil">
+          <span class="other-items">Mon profil</span>
+        </a>
+      </div>
+      <div *ngIf="user.admin" class="ligne">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <a routerLink="/users">
+          <span class="other-items"> Panel Admin</span>
+        </a>
+      </div>
+      <div class="ligne" id="logout-item">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <a (click)=handleLogout() href="">
+          <span id="text-logout">Déconnexion</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
