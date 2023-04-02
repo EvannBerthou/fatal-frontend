@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.champ-question {
+  background-color: var(--background);
+  display: flex;
+  flex: 1;
+
+  mat-form-field {
+    padding: 0 2rem;
+    flex: 1;
+
+    input {
+      width: 100%;
+      background: transparent;
+    }
+  }
+}

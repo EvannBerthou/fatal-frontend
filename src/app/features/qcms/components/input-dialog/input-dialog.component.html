@@ -1,0 +1,6 @@
+<div class="wrapper">
+  <input mat-input #name [formControl]="inputField" placeholder="{{data.placeholder}}" type="text" class="input"
+    (keydown.enter)="confirm()">
+
+  <button mat-flat-button color="primary" [mat-dialog-close]="inputContent"> {{data.button}} </button>
+</div>

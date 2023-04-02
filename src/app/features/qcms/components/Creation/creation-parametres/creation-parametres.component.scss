@@ -1,0 +1,52 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.titre {
+  display: flex;
+  background: var(--background);
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  .entete-div {
+    flex-grow: 6;
+    display: flex;
+  }
+
+  .melanger, .duree {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .melanger {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  > div {
+    background: var(--background);
+  }
+}
+
+table {
+  padding: 0 2rem;
+  background: var(--background);
+}
+
+
+.option {
+  background: transparent;
+  flex: 1;
+  margin: 0 2rem;
+}

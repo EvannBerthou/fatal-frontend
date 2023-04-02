@@ -1,0 +1,19 @@
+<div class="wrapper" *ngIf="qcm">
+  <div class="entete">
+    <div>
+      <div class="save" (click)="saveQCM(qcm)" *ngIf="saving"><mat-spinner [diameter]="20"></mat-spinner>
+        <div id="save-msg">Sauvegarde en cours ...</div>
+      </div>
+    </div>
+
+    <div class="titre">
+      {{qcm.titre}}
+    </div>
+
+    <div id="e3">
+      <mat-card (click)="saveQCM(qcm)" class="shadow-elements loading_button"> Sauvegarder </mat-card>
+    </div>
+  </div>
+
+  <app-creation-tab [qcm]="qcm"></app-creation-tab>
+</div>

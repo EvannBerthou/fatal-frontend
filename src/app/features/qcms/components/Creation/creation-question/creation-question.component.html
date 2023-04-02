@@ -1,0 +1,34 @@
+<ng-container *ngIf="selectedQuestion">
+  <mat-card id="global-question-edition">
+    <app-separator> Informations </app-separator>
+
+    <div class="champ-type shadow-elements">
+      <mat-form-field appearance="standard" id="type">
+        <mat-label>Type</mat-label>
+        <mat-select [(value)]="selectedQuestion.typedequestion">
+          <mat-option *ngFor="let selectedChoix of choix" [value]="selectedChoix.value">
+            {{selectedChoix.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="champ-question shadow-elements">
+      <mat-form-field appearance="standard" id="question">
+        <mat-label>Titre</mat-label>
+        <textarea matInput [(ngModel)]="selectedQuestion.texte" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">
+        </textarea>
+      </mat-form-field>
+    </div>
+
+    <app-separator> Notation </app-separator>
+
+    <app-creation-question-defaut *ngIf="selectedQuestion.typedequestion ==='multiple'" [question]="selectedQuestion">
+    </app-creation-question-defaut>
+    <app-creation-question-numerique *ngIf="selectedQuestion.typedequestion ==='numerique'">
+    </app-creation-question-numerique>
+    <app-creation-question-ouverte *ngIf="selectedQuestion.typedequestion === 'ouverte'">
+    </app-creation-question-ouverte>
+  </mat-card>
+</ng-container>

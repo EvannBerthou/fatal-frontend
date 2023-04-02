@@ -1,0 +1,29 @@
+<div class="wrapper shadow-elements">
+  <div class="overlay" *ngIf="isGenerating">
+    <div class="spinner-wrapper">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+
+  <div class="loaded-content" [class.blurred]="isGenerating">
+  </div>
+  <div class="wrapper-bouton">
+    <mat-card class="shadow-elements add-question loading_button" (click)="generateQCM()">
+      Générer le QCM
+    </mat-card>
+
+    <mat-card class="shadow-elements add-question loading_button" (click)="downloadQCM()">
+      Télécharger le QCM
+    </mat-card>
+  </div>
+
+  <div class="wrapper-main" *ngIf="errormessage !== ''">{{errormessage}}</div>
+
+  <div *ngIf="!isGenerate" class="wrapper-main">
+    <p>Aucun PDF n'a été généré pour le moment, appuyez sur <b>Générer le QCM</b></p>
+    <img src="assets/img/generate.svg" alt="image pdf qcm absent" />
+  </div>
+  <div *ngIf="isGenerate" class="wrapper-main">
+    <iframe [src]="pdf" title="testPdf" height="800rem" width="800rem"></iframe>
+  </div>
+</div>
